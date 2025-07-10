@@ -10,7 +10,7 @@ module.exports = {
       keyframes: {
         beat: {
           "0%": {
-            width: "10%",
+            width: "0%",
             opacity: "1",
           },  
           "50%": {
@@ -18,7 +18,7 @@ module.exports = {
             opacity: "1",
           },
           "100%": {
-            width: "10%",
+            width: "0%",
             opacity: "1",
           },
         },
@@ -34,6 +34,9 @@ module.exports = {
          
         },
       },
+      screens: {
+        'max-sm': {'max': '375px'}, 
+      }
     },
   },
   plugins: [],
