@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function LandingHeader({openaboutt}) {
+function LandingHeader({ openaboutt, openlogin, opensign }) {
   return (
     <header className="bg-[#434343] h-[50%] w-[150%] absolute bottom-[-10%] right-[-86%] rotate-[120deg] flex justify-center items-center z-10 lg:right-[-70%] lg:h-[60%] lg:rotate-[130deg]">
       <div className="relative w-[100%] h-[100%] ">
@@ -13,20 +13,21 @@ function LandingHeader({openaboutt}) {
             PLAY
           </NavLink>
           <NavLink
-            to="/signup"
+            onClick={() => opensign()}
             className="border-b-[4px]  border-b-[#ff6583] flex items-center justify-center animate-borderBeat hover:animate-hoveBeat hover:w-[50%] lg:mr-[30%] max-w-[80px]"
           >
             SIGNUP
           </NavLink>
           <NavLink
-            to="/login"
+            onClick={() => openlogin()}
             className="border-b-[4px]  border-b-[#ff6583] flex items-center justify-center animate-borderBeat hover:animate-hoveBeat hover:w-[50%] lg:mr-[50%] max-w-[80px]"
           >
             LOGIN
           </NavLink>
-          <NavLink 
-          onClick={()=> openaboutt()}
-          className="border-b-[4px] border-b-[#ff6583] flex items-center justify-center animate-borderBeat hover:animate-hoveBeat hover:w-[50%] lg:mr-[80%] max-w-[80px]">
+          <NavLink
+            onClick={() => openaboutt()}
+            className="border-b-[4px] border-b-[#ff6583] flex items-center justify-center animate-borderBeat hover:animate-hoveBeat hover:w-[50%] lg:mr-[80%] max-w-[80px]"
+          >
             ABOUT
           </NavLink>
         </div>
