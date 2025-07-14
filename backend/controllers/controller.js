@@ -7,10 +7,10 @@ const login = async (req, res) => {
   let verify = await model.findOne({ username: username, password: password });
 
   if (!verify) {
-    return res.json({ msg: "Wrong username or password" });
+    return res.json({ msg: "Wrong username or password", var:"failed"});
   }
 
-  res.json({ msg: "Login Successful", user: verify });
+  res.json({ msg: "Login Successful", user: verify, var:"success" });
 };
 
 const signup = async (req, res) => {
