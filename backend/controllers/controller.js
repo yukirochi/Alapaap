@@ -19,13 +19,13 @@ const signup = async (req, res) => {
   let verifyemail = await model.findOne({ email: email });
 
   if (verifyemail) {
-    return res.json({ msg: "Email is already used" });
+    return res.json({ msg: "Email is already used", var: "emailprob" });
   }
 
   let verifyname = await model.findOne({ username: username });
 
   if (verifyname) {
-    return res.json({ msg: "Username is already used" });
+    return res.json({ msg: "Username is already used", var: "userprob" });
   }
 
   await model.create({

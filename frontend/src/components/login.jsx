@@ -1,7 +1,15 @@
+import { useState } from "react";
+
 function Loginuser() {
+  let [wrongstatus, setwrongstats] = useState("")
+
+  const onlogin = async(e) => {
+     e.preventDefault()
+
+  }
   return (
     <div className="w-[100%] h-[60%] mt-[10%]">
-      <form className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30">
+      <form className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30" onSubmit={onlogin}>
         <div className="h-[80px]">
           <p className="text-[20px] mb-[5px]">
             <span className="text-[#ff6583]">U</span>sern
@@ -13,7 +21,7 @@ function Loginuser() {
             required
           />
           <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            Wrong Username
+           {wrongstatus === "wrong login" && "Wrong Username"} 
           </p>
         </div>
         <div className="h-[90px]">
@@ -28,7 +36,7 @@ function Loginuser() {
             required
           />
           <p className="w-[100%] text-center text-[13px] text-[#611717]">
-           OR Password
+             {wrongstatus === "wrong login" && "OR Password"}
           </p>
         </div>
         <div className="w-[100%] h-[20%] flex justify-center items-center">

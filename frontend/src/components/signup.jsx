@@ -1,7 +1,57 @@
+import { useState } from "react";
+
 function Signupuser() {
+  let [wrongstatus, setwrongstats] = useState("");
+  let [verifyusername, setverifyusername] = useState(false);
+  let [verifyemail, setverifyemail] = useState(false);
+  let [username, setusername] = useState("");
+  let [email, setemail] = useState("");
+  let [password, setpassword] = useState("");
+  let [cpassword, setcpassword] = useState("");
+  let [isdisable, setdisable] = useState(true);
+  let [showpass, setshowpass] = useState(false);
+  let [showcpass, setshowcpass] = useState(false);
+
+  const onsignup = async (e) => {
+    e.preventDefault();
+
+    let data = { username, email, password };
+    try {
+      const res = await fetch("http://localhost:4001/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log("Status code:", res.status);
+
+      if (!res.ok) throw new Error("Network Error");
+      let resp = await res.json();
+
+      if (resp.var === "emailprob") setverifyemail(true);
+      if (resp.var === "userprob") setverifyusername(true);
+      alert(resp.msg);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const verifypass = (val, val2) => {
+    if (val2 !== val) {
+      setwrongstats("passwordnomatch");
+    } else {
+      setwrongstats("");
+      setdisable(false);
+    }
+  };
   return (
     <div className="w-[100%] h-[60%] ">
-      <form className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30">
+      <form
+        className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
+        onSubmit={onsignup}
+      >
         <div className="h-[75px]">
           <p className="text-[20px] mb-[5px]">
             <span className="text-[#ff6583]">U</span>sern
@@ -10,10 +60,14 @@ function Signupuser() {
           <input
             type="text"
             className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px] outline-none text-center"
+            onChange={(e) => {
+              setverifyusername(false);
+              setusername(e.target.value);
+            }}
             required
           />
           <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            Username is already taken
+            {verifyusername && "Username is already taken"}
           </p>
         </div>
         <div className="h-[75px]">
@@ -21,42 +75,78 @@ function Signupuser() {
             E<span className="text-[#6c63ff]">m</span>ail
           </p>
           <input
-            type="text"
+            type="email"
             className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px]  outline-none text-center"
+            onChange={(e) => {
+              setemail(e.target.value);
+              setverifyemail(false);
+            }}
             required
           />
           <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            Email is already taken
+            {verifyemail && "Email is already taken"}
           </p>
         </div>
-        <div className="h-[70px]">
+        <div className="h-[70px] relative">
           <p className="text-[20px] mb-[5px]">
             Pas<span className="text-[#ff6583]">s</span>wo
             <span className="text-[#6c63ff]">r</span>d
           </p>
+          <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
+            <i
+              className="material-symbols-outlined"
+              onClick={() => setshowpass((prev) => !prev)}
+            >
+              {!showpass ? "visibility_off" : "visibility"}
+            </i>
+          </div>
           <input
-            type="text"
+            type={showpass ? "text" : "password"}
             className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px] outline-none text-center"
             required
+            onChange={(e) => {
+              const val = e.target.value;
+              setpassword(val);
+              verifypass(val, cpassword);
+            }}
           />
         </div>
-        <div className="h-[90px]">
+        <div className="h-[90px] relative">
           <p className="text-[20px] mb-[5px]">
             <span className="text-[#6c63ff]">C</span>onfirm Pas
             <span className="text-[#ff6583]">s</span>wo
             <span className="text-[#6c63ff]">r</span>d
           </p>
+          <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
+            <i
+              className="material-symbols-outlined"
+              onClick={() => setshowcpass((prev) => !prev)}
+            >
+              {!showcpass ? "visibility_off" : "visibility"}
+            </i>
+          </div>
           <input
-            type="text"
+            type={showcpass ? "text" : "password"}
             className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black bg-transparent md:h-[40px]  outline-none text-center"
             required
+            onChange={(e) => {
+              const val2 = e.target.value;
+              setcpassword(val2);
+              verifypass(password, val2);
+            }}
           />
+
           <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            Password dont match
+            {wrongstatus === "passwordnomatch" && "Password dont match"}
           </p>
         </div>
         <div className="w-[100%] h-[20%] flex justify-center items-center">
-            <button className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#6c63ff] rounded-[5px]">JOIN</button>
+          <button
+            className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#6c63ff] rounded-[5px]"
+            disabled={isdisable}
+          >
+            JOIN
+          </button>
         </div>
       </form>
     </div>
