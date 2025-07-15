@@ -7,7 +7,7 @@ function LandingHeader({ openaboutt, openlogin, opensign }) {
       <div className="relative w-[100%] h-[100%] ">
         <div className="absolute bottom-[-5%] right-[] left-[50%]  rotate-[-120deg] flex flex-col w-[20%] h-[70%] items-center text-[clamp(1.3rem,2vw,2rem)] gap-[7%] text-[#6c63ff] lg:rotate-[-130deg] lg:bottom-[60%] lg:top-[20%] lg:left-[40%]">
           <NavLink
-            to="/play"
+            to="/lobby"
             className="border-b-[4px]  border-b-[#ff6583] flex items-center justify-center animate-borderBeat hover:animate-hoveBeat hover:w-[50%] max-w-[80px]"
           >
             PLAY
