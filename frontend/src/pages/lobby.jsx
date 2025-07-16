@@ -25,46 +25,46 @@ function Lobby() {
         <div className="w-[80%] h-[90%] ">
           <div className="w-[100%] h-[33%]  flex justify-between">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0"
               style={{ backgroundImage: `url(${agham})` }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px]">
+              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 AGHAM
               </p>
             </div>
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0"
               style={{ backgroundImage: `url(${heograpiya})` }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px]">
+              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 HEOGRAPIYA
               </p>
             </div>
           </div>
           <div className="w-[100%] h-[33%]  flex justify-center">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0"
               style={{ backgroundImage: `url(${matematika})` }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px]">
+              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 MATEMATIKA
               </p>
             </div>
           </div>
           <div className="w-[100%] h-[33%] flex justify-between">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0"
               style={{ backgroundImage: `url(${politika})` }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px]">
+              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 POLITIKA
               </p>
             </div>
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0"
               style={{ backgroundImage: `url(${teknolohiya})` }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px]">
+              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                TEKNOLOHIYA
               </p>
             </div>

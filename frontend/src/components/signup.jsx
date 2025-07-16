@@ -71,7 +71,7 @@ function Signupuser() {
             {verifyemail && "Email is already taken"}
           </p>
         </div>
-        <div className="h-[70px] relative">
+        <div className="h-[70px] relative ">
           <p className="text-[20px] mb-[5px]">
             Pas<span className="text-[#ff6583]">s</span>wo
             <span className="text-[#6c63ff]">r</span>d
