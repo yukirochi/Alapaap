@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Onsignup } from "../api/auth";
 
 function Signupuser() {
   let [wrongstatus, setwrongstats] = useState("");
@@ -12,32 +13,6 @@ function Signupuser() {
   let [showpass, setshowpass] = useState(false);
   let [showcpass, setshowcpass] = useState(false);
 
-  const onsignup = async (e) => {
-    e.preventDefault();
-
-    let data = { username, email, password };
-    try {
-      const res = await fetch("http://localhost:4001/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      console.log("Status code:", res.status);
-
-      if (!res.ok) throw new Error("Network Error");
-      let resp = await res.json();
-
-      if (resp.var === "emailprob") setverifyemail(true);
-      if (resp.var === "userprob") setverifyusername(true);
-      alert(resp.msg);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const verifypass = (val, val2) => {
     if (val2 !== val) {
       setwrongstats("passwordnomatch");
@@ -50,7 +25,16 @@ function Signupuser() {
     <div className="w-[100%] h-[60%] ">
       <form
         className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
-        onSubmit={onsignup}
+        onSubmit={(e) =>
+          Onsignup(
+            e,
+            username,
+            email,
+            password,
+            setverifyemail,
+            setverifyusername,
+          )
+        }
       >
         <div className="h-[75px]">
           <p className="text-[20px] mb-[5px]">

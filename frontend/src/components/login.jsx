@@ -1,45 +1,17 @@
 import { useState } from "react";
+import { Onlogin } from "../api/auth";
 
 function Loginuser() {
   let [wrongstatus, setwrongstats] = useState(false);
-  let [verifyusername, setverifyusername] = useState(false);
-  let [verifyemail, setverifyemail] = useState(false);
   let [username, setusername] = useState("");
-  let [email, setemail] = useState("");
   let [password, setpassword] = useState("");
-  let [cpassword, setcpassword] = useState("");
-  let [isdisable, setdisable] = useState(true);
   let [showpass, setshowpass] = useState(false);
-  let [showcpass, setshowcpass] = useState(false);
 
-  const onlogin = async (e) => {
-    e.preventDefault();
-    try {
-      let data = { username, password };
-
-      let res = await fetch("http://localhost:4001/api/login", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Network Error :", res.status);
-      let resp = await res.json();
-      if (resp.var === "failed") {
-        setwrongstats(true);
-        alert(resp.msg);
-      }
-      alert(resp.msg);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   return (
     <div className="w-[100%] h-[60%] mt-[10%]">
       <form
         className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
-        onSubmit={onlogin}
+        onSubmit={(e)=> Onlogin(e, username, password, setwrongstats)}
       >
         <div className="h-[80px]">
           <p className="text-[20px] mb-[5px]">
