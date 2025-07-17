@@ -5,14 +5,18 @@ module.exports = {
     extend: {
       animation: {
         borderBeat: "beat 1s linear infinite",
-        hoveBeat: "hove 0.5s linear"
+        hoveBeat: "hove 0.5s linear",
+        opact: "opac 0.2s linear",
+        inp: "inp 0.5s ease",
+        opa: "opa 0.8s linear",
+        inpp: "inpp 0.3s ease"
       },
       keyframes: {
         beat: {
           "0%": {
             width: "0%",
             opacity: "1",
-          },  
+          },
           "50%": {
             width: "30%",
             opacity: "1",
@@ -26,17 +30,50 @@ module.exports = {
           "0%": {
             width: "10%",
             opacity: "1",
-          },  
+          },
           "100%": {
             width: "40%",
             opacity: "1",
           },
-         
+        },
+        opac: {
+          "0%": {
+            height: "5%",
+            opacity: "0",
+          },
+          "100%": {
+            height: "55%",
+            opacity: "1",
+          },
+        },
+        inp: {
+          "0%": {
+            width: "10%",
+          },
+          "100%": {
+            width: "100%",
+          },
+        },
+         inpp: {
+          "0%": {
+            width: "5%",
+          },
+          "100%": {
+            width: "40%",
+          },
+        },
+        opa: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
         },
       },
       screens: {
-        'max-sm': {'max': '375px'}, 
-      }
+        "max-sm": { max: "375px" },
+      },
     },
   },
   plugins: [],

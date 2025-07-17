@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Onsignup } from "../api/auth";
 
 function Signupuser() {
@@ -21,6 +21,27 @@ function Signupuser() {
       setdisable(false);
     }
   };
+
+  useEffect(() => {
+    const inp = document.querySelectorAll("input");
+    const inpp = document.getElementById("logbut");
+    const hide = document.querySelectorAll("#showpass");
+   
+    if (inp) {
+      inpp.classList.add("animate-inpp");
+      for (let i = 0; i < inp.length; i++) {
+        inp[i].classList.add("animate-inp");
+      }
+
+      setTimeout(() => {
+        for (let i = 0; i < hide.length; i++) {
+          hide[i].classList.add("animate-opa");
+          hide[i].classList.add("opacity-100");
+        }
+      }, 600);
+    }
+  }, []);
+
   return (
     <div className="w-[100%] h-[60%] ">
       <form
@@ -32,7 +53,7 @@ function Signupuser() {
             email,
             password,
             setverifyemail,
-            setverifyusername,
+            setverifyusername
           )
         }
       >
@@ -78,7 +99,8 @@ function Signupuser() {
           </p>
           <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
             <i
-              className="material-symbols-outlined"
+              id="showpass"
+              className="material-symbols-outlined opacity-0"
               onClick={() => setshowpass((prev) => !prev)}
             >
               {!showpass ? "visibility_off" : "visibility"}
@@ -103,7 +125,8 @@ function Signupuser() {
           </p>
           <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
             <i
-              className="material-symbols-outlined"
+              id="showpass"
+              className="material-symbols-outlined opacity-0"
               onClick={() => setshowcpass((prev) => !prev)}
             >
               {!showcpass ? "visibility_off" : "visibility"}
@@ -126,6 +149,7 @@ function Signupuser() {
         </div>
         <div className="w-[100%] h-[20%] flex justify-center items-center">
           <button
+            id="logbut"
             className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#6c63ff] rounded-[5px]"
             disabled={isdisable}
           >

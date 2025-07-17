@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Onlogin } from "../api/auth";
-
+import "../css/index.css"
 function Loginuser() {
   let [wrongstatus, setwrongstats] = useState(false);
   let [username, setusername] = useState("");
   let [password, setpassword] = useState("");
   let [showpass, setshowpass] = useState(false);
 
+  useEffect(() => {
+    const inp = document.querySelectorAll("input");
+    const inpp = document.getElementById("logbut");
+    const hide = document.getElementById("showpass");
+    if (inp) {
+      inpp.classList.add("animate-inpp");
+      for (let i = 0; i < inp.length; i++) {
+        inp[i].classList.add("animate-inp");
+      }
+
+      setTimeout(() => {
+        hide.classList.add("animate-opa");
+        hide.classList.add("opacity-100")
+      }, 600);
+      
+    }
+  }, []);
   return (
     <div className="w-[100%] h-[60%] mt-[10%]">
       <form
         className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
-        onSubmit={(e)=> Onlogin(e, username, password, setwrongstats)}
+        onSubmit={(e) => Onlogin(e, username, password, setwrongstats)}
       >
         <div className="h-[80px]">
           <p className="text-[20px] mb-[5px]">
@@ -39,7 +56,8 @@ function Loginuser() {
           </p>
           <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
             <i
-              className="material-symbols-outlined"
+              id="showpass"
+              className="material-symbols-outlined opacity-0"
               onClick={() => setshowpass((prev) => !prev)}
             >
               {!showpass ? "visibility_off" : "visibility"}
@@ -59,7 +77,10 @@ function Loginuser() {
           </p>
         </div>
         <div className="w-[100%] h-[20%] flex justify-center items-center">
-          <button className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#ff6583] rounded-[5px]">
+          <button
+            id="logbut"
+            className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#ff6583] rounded-[5px]"
+          >
             LOGIN
           </button>
         </div>
