@@ -9,7 +9,12 @@ module.exports = {
         opact: "opac 0.2s linear",
         inp: "inp 0.5s ease",
         opa: "opa 0.8s linear",
-        inpp: "inpp 0.3s ease"
+        inpp: "inpp 0.3s ease",
+        lead: "high 0.4s ease",
+        headlan: "headerlanding 0.5s ease",
+        headlan2: "headerlanding2 0.7s ease",
+        playnav: "inp 3s ease",
+        playnav2: "opa 3s ease",
       },
       keyframes: {
         beat: {
@@ -46,6 +51,14 @@ module.exports = {
             opacity: "1",
           },
         },
+        high: {
+          "0%": {
+            height: "5%",
+          },
+          "100%": {
+            height: "50%",
+          },
+        },
         inp: {
           "0%": {
             width: "10%",
@@ -54,7 +67,7 @@ module.exports = {
             width: "100%",
           },
         },
-         inpp: {
+        inpp: {
           "0%": {
             width: "5%",
           },
@@ -67,6 +80,26 @@ module.exports = {
             opacity: "0",
           },
           "100%": {
+            opacity: "1",
+          },
+        },
+        headerlanding: {
+          "0%": {
+            right: "0%",
+            opacity: "0",
+          },
+          "100%": {
+            right: "-70%",
+            opacity: "1",
+          },
+        },
+        headerlanding2: {
+          "0%": {
+            right: "-500%",
+            opacity: "0",
+          },
+          "100%": {
+            right: "-86%",
             opacity: "1",
           },
         },
