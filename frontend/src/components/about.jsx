@@ -17,7 +17,7 @@ function About({ closeabout }) {
 
   return (
     <div
-      className="w-[100vw] h-[100vh] absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 z-20 bg-[rgba(67,67,67,0.4)]"
+      className="w-[100vw] h-[100vh] absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 z-100 bg-[rgba(67,67,67,0.4)]"
       onClick={() => closeabout()}
     >
       <div id="about-cont" className=" bg-white flex flex-col items-center border-[1px] border-solid w-[80%] h-[55%] absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 z-20 rounded-[6px]  max-w-[500px] ">
