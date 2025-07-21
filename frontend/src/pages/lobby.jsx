@@ -6,6 +6,8 @@ import matematika from "../assets/matematika.webp";
 import politika from "../assets/politika.webp";
 import teknolohiya from "../assets/teknolohiya.webp";
 import { useEffect } from "react";
+
+//usecontext to avoid too much nesting props
 function Lobby() {
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
