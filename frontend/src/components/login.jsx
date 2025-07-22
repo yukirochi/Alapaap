@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { Onlogin } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { Uselogs } from "../auth/providers";
 import "../css/index.css"
 function Loginuser() {
   let [wrongstatus, setwrongstats] = useState(false);
   let [username, setusername] = useState("");
   let [password, setpassword] = useState("");
   let [showpass, setshowpass] = useState(false);
+  let navigate = useNavigate()
+  let { userlogin } = Uselogs();
 
   useEffect(() => {
     const inp = document.querySelectorAll("input");
@@ -23,12 +27,13 @@ function Loginuser() {
       }, 600);
       
     }
+  
   }, []);
   return (
     <div className="w-[100%] h-[60%] mt-[10%]">
       <form
         className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
-        onSubmit={(e) => Onlogin(e, username, password, setwrongstats)}
+        onSubmit={(e) => Onlogin(e, username, password, setwrongstats, navigate, userlogin)}
       >
         <div className="h-[80px]">
           <p className="text-[20px] mb-[5px]">

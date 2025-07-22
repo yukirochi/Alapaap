@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import "./css/index.css"
 import {BrowserRouter} from "react-router-dom"
 import Router from './routes/routes';
+import { AuthProvider } from './auth/providers';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <React.StrictMode>
+  <AuthProvider>
     <Router />
+  </AuthProvider>
   </React.StrictMode>
   </BrowserRouter>
 );

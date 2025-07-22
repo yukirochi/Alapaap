@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Onsignup } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { Uselogs } from "../auth/providers";
 
 function Signupuser() {
   let [wrongstatus, setwrongstats] = useState("");
@@ -12,6 +14,8 @@ function Signupuser() {
   let [isdisable, setdisable] = useState(true);
   let [showpass, setshowpass] = useState(false);
   let [showcpass, setshowcpass] = useState(false);
+  let navigate = useNavigate();
+  let { userlogin } = Uselogs();
 
   const verifypass = (val, val2) => {
     if (val2 !== val) {
@@ -26,7 +30,7 @@ function Signupuser() {
     const inp = document.querySelectorAll("input");
     const inpp = document.getElementById("logbut");
     const hide = document.querySelectorAll("#showpass");
-   
+
     if (inp) {
       inpp.classList.add("animate-inpp");
       for (let i = 0; i < inp.length; i++) {
@@ -53,7 +57,9 @@ function Signupuser() {
             email,
             password,
             setverifyemail,
-            setverifyusername
+            setverifyusername,
+            navigate,
+            userlogin
           )
         }
       >
