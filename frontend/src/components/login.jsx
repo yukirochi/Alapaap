@@ -9,7 +9,6 @@ function Loginuser() {
   let [password, setpassword] = useState("");
   let [showpass, setshowpass] = useState(false);
   let navigate = useNavigate()
-  let { userlogin } = Uselogs();
 
   useEffect(() => {
     const inp = document.querySelectorAll("input");
@@ -33,7 +32,7 @@ function Loginuser() {
     <div className="w-[100%] h-[60%] mt-[10%]">
       <form
         className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
-        onSubmit={(e) => Onlogin(e, username, password, setwrongstats, navigate, userlogin)}
+        onSubmit={(e) => Onlogin(e, username, password, setwrongstats, navigate)}
       >
         <div className="h-[80px]">
           <p className="text-[20px] mb-[5px]">

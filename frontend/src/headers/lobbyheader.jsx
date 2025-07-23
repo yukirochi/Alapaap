@@ -3,14 +3,6 @@ import { useEffect, useState } from "react";
 import { Uselogs } from "../auth/providers";
 function Lobbyheader() {
   let [info, setinfo] = useState("dasdasas");
-  let { user } = Uselogs();
-
-  useEffect(() => {
-    if (user) {
-      setinfo(user.username);
-      console.log(user);
-    }
-  }, [user]);
 
   useEffect(() => {
     const playnav = document.querySelector(".playnav");

@@ -15,7 +15,6 @@ function Signupuser() {
   let [showpass, setshowpass] = useState(false);
   let [showcpass, setshowcpass] = useState(false);
   let navigate = useNavigate();
-  let { userlogin } = Uselogs();
 
   const verifypass = (val, val2) => {
     if (val2 !== val) {
@@ -59,7 +58,7 @@ function Signupuser() {
             setverifyemail,
             setverifyusername,
             navigate,
-            userlogin
+      
           )
         }
       >

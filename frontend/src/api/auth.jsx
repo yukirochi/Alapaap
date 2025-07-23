@@ -6,7 +6,6 @@ export const Onsignup = async (
   veremail,
   veruser,
   navigate,
-  userlogin
 ) => {
   e.preventDefault();
 
@@ -32,7 +31,6 @@ export const Onsignup = async (
 
     if (resp.var === "emailprob") veremail(true);
     if (resp.var === "userprob") veruser(true);
-    userlogin(resp.username);
     alert(resp.msg);
     navigate("/lobby");
   } catch (error) {
@@ -46,7 +44,6 @@ export const Onlogin = async (
   varpassword,
   varstats,
   navigate,
-  userlogin
 ) => {
   e.preventDefault();
   try {
@@ -67,7 +64,6 @@ export const Onlogin = async (
       varstats(true);
       alert(resp.msg);
     }
-    userlogin(resp.username);
     alert(resp.msg);
     navigate("/lobby");
   } catch (error) {

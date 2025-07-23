@@ -7,10 +7,10 @@ const login = async (req, res) => {
   let verify = await model.findOne({ username: username, password: password });
 
   if (!verify) {
-    return res.json({ msg: "Wrong username or password", var:"failed"});
+    return res.json({ msg: "Wrong username or password", var:"failed", stats: false});
   }
 
-  res.json({ msg: "Login Successful", user: verify, var:"success", username: username });
+  res.json({ msg: "Login Successful", user: verify, var:"success", username: username, stats: true });
 };
 
 const signup = async (req, res) => {
@@ -19,13 +19,13 @@ const signup = async (req, res) => {
   let verifyemail = await model.findOne({ email: email });
 
   if (verifyemail) {
-    return res.json({ msg: "Email is already used", var: "emailprob" });
+    return res.json({ msg: "Email is already used", var: "emailprob", stats: false});
   }
 
   let verifyname = await model.findOne({ username: username });
 
   if (verifyname) {
-    return res.json({ msg: "Username is already used", var: "userprob", username: username });
+    return res.json({ msg: "Username is already used", var: "userprob", username: username, stats: true });
   }
 
   await model.create({
