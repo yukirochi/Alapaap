@@ -155,7 +155,7 @@ function Signupuser() {
         <div className="w-[100%] h-[20%] flex justify-center items-center">
           <button
             id="logbut"
-            className="w-[40%] h-[50%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#6c63ff] rounded-[5px]"
+            className="w-[40%] h-[50%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px]"
             disabled={isdisable}
           >
             JOIN

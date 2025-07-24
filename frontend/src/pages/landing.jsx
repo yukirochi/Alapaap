@@ -3,15 +3,20 @@ import landingimage from "../assets/landing-image.svg";
 import { useState } from "react";
 import About from "../components/about";
 import Usersignlog from "./userlogsign";
+import NoticeSign from "../components/noticesign";
+
 
 function Landing() {
   let [openabout, setopenabout] = useState(false);
   let [openview, setopenview] = useState("image");
+  let [notice, setnotice] = useState(false)
 
   const openaboutf = () => setopenabout(true);
   const closeaboutf = () => setopenabout(false);
   const openlog = () => setopenview("login");
   const opensign = () => setopenview("signup");
+  const opennotice = () => setnotice(true)
+  const closennotice = ()=> setnotice(false)
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col justify-center items-center relative lg:block">
@@ -35,8 +40,10 @@ function Landing() {
         openaboutt={openaboutf}
         openlogin={openlog}
         opensign={opensign}
+        opennotice={opennotice}
       />
       {openabout && <About closeabout={closeaboutf} />}
+      {notice && <NoticeSign closennotice={closennotice} opensign={opensign} />}
     </div>
   );
 }

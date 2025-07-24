@@ -7,7 +7,6 @@ import politika from "../assets/politika.webp";
 import teknolohiya from "../assets/teknolohiya.webp";
 import { useEffect } from "react";
 
-//usecontext to avoid too much nesting props
 function Lobby() {
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
@@ -75,7 +74,7 @@ function Lobby() {
         </div>
       </div>
       <div className="w-[100%] h-[4%] flex justify-center ">
-        <button className="w-[30%] h-[100%] lg:text-[20px] bg-[#434343] flex justify-center items-center text-[#6c63ff] rounded-[5px] max-w-[200px]">
+        <button className="w-[30%] h-[100%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px] max-w-[200px]">
           START
         </button>
       </div>
