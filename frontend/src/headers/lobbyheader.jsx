@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Uselogs } from "../auth/providers";
+import Userhead from "../components/userhead";
 function Lobbyheader() {
   let [info, setinfo] = useState("dasdasas");
 
@@ -15,12 +16,7 @@ function Lobbyheader() {
     <header className="flex w-[100%] h-[10%] justify-between  text-[20px] items-center">
       {info && (
         <NavLink className="ml-[5%] w-[30%] max-w-[300px] flex flex-col justify-center items-center playnav">
-          <p className="w-[100%] border-b-[1px] text-center text-[90%] border-b-[#ff6583] ">
-            {info}
-          </p>
-          <p className="w-[100%]  text-center text-[50%] opacity-60 playnav2">
-            click to view your profile
-          </p>
+         <Userhead/>
         </NavLink>
       )}
 
