@@ -6,11 +6,13 @@ import matematika from "../assets/matematika.webp";
 import politika from "../assets/politika.webp";
 import teknolohiya from "../assets/teknolohiya.webp";
 import { useEffect } from "react";
-
+import { useLocation } from "react-router-dom";
 function Lobby() {
+  const location = useLocation()
+  let nickname = location.state?.username || "guest"
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
-      <Lobbyheader />
+      <Lobbyheader nickname = {nickname}/>
       <div className=" w-[100%] h-[5%] flex justify-center items-center">
         <p className="text-5xl font-bold  lg:text-6xl md:text-6xl">
           <span className="text-[#6c63ff]">A</span>L

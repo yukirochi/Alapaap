@@ -1,3 +1,4 @@
+import Userhead from "../components/userhead";
 export const Onsignup = async (
   e,
   varusername,
@@ -5,7 +6,7 @@ export const Onsignup = async (
   varpassword,
   veremail,
   veruser,
-  navigate,
+  navigate
 ) => {
   e.preventDefault();
 
@@ -32,7 +33,7 @@ export const Onsignup = async (
     if (resp.var === "emailprob") veremail(true);
     if (resp.var === "userprob") veruser(true);
     alert(resp.msg);
-    navigate("/lobby");
+    navigate("/lobby", { state: { username: varusername } });
   } catch (error) {
     console.error(error);
   }
@@ -43,7 +44,7 @@ export const Onlogin = async (
   varusername,
   varpassword,
   varstats,
-  navigate,
+  navigate
 ) => {
   e.preventDefault();
   try {
@@ -65,7 +66,7 @@ export const Onlogin = async (
       alert(resp.msg);
     }
     alert(resp.msg);
-    navigate("/lobby");
+    navigate("/lobby", { state: { username: varusername } });
   } catch (error) {
     console.error(error);
   }

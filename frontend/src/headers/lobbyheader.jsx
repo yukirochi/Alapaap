@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Uselogs } from "../auth/providers";
 import Userhead from "../components/userhead";
-function Lobbyheader() {
+function Lobbyheader({nickname}) {
   let [info, setinfo] = useState("dasdasas");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Lobbyheader() {
     <header className="flex w-[100%] h-[10%] justify-between  text-[20px] items-center">
       {info && (
         <NavLink className="ml-[5%] w-[30%] max-w-[300px] flex flex-col justify-center items-center playnav">
-         <Userhead/>
+         <Userhead nickname={nickname}/>
         </NavLink>
       )}
 
