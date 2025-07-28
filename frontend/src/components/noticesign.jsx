@@ -5,7 +5,7 @@ function NoticeSign({closennotice, opensign}) {
         <div className="w-[100%] h-[100%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.1)]"
         onClick={() => closennotice()}>
         <div
-  class="group select-none w-[250px] flex flex-col p-4 absolute items-center justify-center bg-gray-800 border border-gray-800 shadow-lg rounded-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+  class="group select-none w-[250px] flex flex-col p-4 absolute items-center justify-center bg-white border border-white  rounded-[6px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 >
   <div class="">
     <div class="text-center p-3 flex-auto justify-center">
@@ -14,7 +14,7 @@ function NoticeSign({closennotice, opensign}) {
       >
         sync_saved_locally
       </div>
-      <h2 class="text-xl font-bold py-4 text-gray-200">Are you sure?</h2>
+      <h2 class="text-xl font-bold py-4 text-gray-800">Are you sure?</h2>
       <p class="font-bold text-sm text-gray-500 px-2">
         Your progress wont be saved if you dont have an account
       </p>

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "../pages/landing";
 import Lobby from "../pages/lobby";
+import Game from "../pages/game";
 
 
 function Router() {
@@ -8,6 +9,7 @@ function Router() {
            <Routes>
                <Route path="/" element={<Landing/>} />
                <Route path="/lobby" element={<Lobby/>}/>
+               <Route path="/game" element={<Game/>}/>
            </Routes>
     </div> );
 }

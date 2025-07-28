@@ -7,13 +7,6 @@ import politika from "../assets/politika.webp"
 import teknolohiya from "../assets/teknolohiya.webp"
 
 function About({ closeabout }) {
-  useEffect(()=>{
-      const ab = document.getElementById("about-cont");
-      if(ab){
-        ab.classList.add("animate-opact")
-      }
-
-  },[])
 
   return (
     <div

@@ -5,14 +5,64 @@ import heograpiya from "../assets/heograpiya.webp";
 import matematika from "../assets/matematika.webp";
 import politika from "../assets/politika.webp";
 import teknolohiya from "../assets/teknolohiya.webp";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import Finalnotice from "../components/finalnotice";
 function Lobby() {
-  const location = useLocation()
-  let nickname = location.state?.username || "guest"
+  let [select, setselect] = useState("");
+  const location = useLocation();
+  let nickname = location.state?.username || "guest";
+  const navigate = useNavigate();
+  let [tog, settog] = useState(false)
+  let subjects = [
+    {
+      name: "Science",
+      category: "AGHAM",
+    },
+    {
+      name: "Geography",
+      category: "HEOGRAPIYA",
+    },
+    {
+      name: "General Knowledge",
+      category: "MATEMATIKA",
+    },
+    {
+      name: "Society & Culture",
+      category: "POLITIKA",
+    },
+    {
+      name: "Music",
+      category: "TEKNOLOHIYA",
+    },
+  ];
+  const getdata = () => {
+    if (select === "") {
+      alert("pls choose a scarf first");
+      return;
+    }   
+    
+    navigate("/game", { state: { selected: select, nickname: nickname } });
+  };
+
+  const selected = (items) => {
+    document.querySelectorAll(".select").forEach((itm) => {
+      itm.classList.remove("grayscale-0");
+    });
+    setselect(items);
+
+    subjects.forEach((key) => {
+      if (items === key.name) {
+        document
+          .getElementsByClassName(`${key.category}`)[0]
+          .classList.add("grayscale-0");
+      }
+    });
+  };
+
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
-      <Lobbyheader nickname = {nickname}/>
+      <Lobbyheader nickname={nickname} />
       <div className=" w-[100%] h-[5%] flex justify-center items-center">
         <p className="text-5xl font-bold  lg:text-6xl md:text-6xl">
           <span className="text-[#6c63ff]">A</span>L
@@ -29,16 +79,18 @@ function Lobby() {
         <div className="w-[80%] h-[90%] ">
           <div className="w-[100%] h-[33%]  flex justify-between">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics "
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics AGHAM select"
               style={{ backgroundImage: `url(${agham})` }}
+              onClick={() => selected("Science")}
             >
               <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px] ">
                 AGHAM
               </p>
             </div>
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics HEOGRAPIYA select"
               style={{ backgroundImage: `url(${heograpiya})` }}
+              onClick={() => selected("Geography")}
             >
               <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 HEOGRAPIYA
@@ -47,42 +99,49 @@ function Lobby() {
           </div>
           <div className="w-[100%] h-[33%]  flex justify-center">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics MATEMATIKA select"
               style={{ backgroundImage: `url(${matematika})` }}
+              onClick={() => selected("General Knowledge")}
             >
               <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                MATEMATIKA
+                GENERAL
               </p>
             </div>
           </div>
           <div className="w-[100%] h-[33%] flex justify-between">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics  POLITIKA select"
               style={{ backgroundImage: `url(${politika})` }}
+              onClick={() => selected("Society & Culture")}
             >
               <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
                 POLITIKA
               </p>
             </div>
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics"
+              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics TEKNOLOHIYA select"
               style={{ backgroundImage: `url(${teknolohiya})` }}
+              onClick={() => selected("Music")}
             >
               <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                TEKNOLOHIYA
+                MUSIKA
               </p>
             </div>
           </div>
         </div>
       </div>
       <div className="w-[100%] h-[4%] flex justify-center ">
-        <button className="w-[30%] h-[100%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px] max-w-[200px]">
+        <button
+          className="w-[30%] h-[100%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px] max-w-[200px]"
+          onClick={() => settog(true)}
+        >
           START
         </button>
       </div>
       <p className="w-[100%] text-center text-[10px]">
         Login to be in Leaderboard
       </p>
+      {tog && <Finalnotice settog={settog} getdata={getdata}/>}
     </div>
   );
 }
