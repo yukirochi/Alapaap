@@ -2,18 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+input[type="range"] {
+  -webkit-appearance: none; 
+  appearance: none;
+  background: none;
+  height: 4px;
+  border-radius: 2px;
+}
 
+/* Hide the thumb in WebKit (Chrome, Safari, Edge) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  background: #ff6583;
+  border: none;
+  box-shadow: none;
+  border-radius: 10px;
+
+}
+
+/* Hide the thumb in Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 2px;
+  height: 2px;
+  background: #ff6583;
+  border: none;
+}
+
+/* Hide the thumb in IE/Edge (legacy) */
+input[type="range"]::-ms-thumb {
+  width: 2px;
+  height: 2px;
+  background: #ff6583;
+  border: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+}

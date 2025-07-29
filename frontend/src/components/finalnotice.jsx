@@ -5,7 +5,7 @@ function Finalnotice({settog, getdata}) {
     <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-1000 bg-[rgba(67,67,67,0.4)] flex items-center justify-center"
     onClick={()=> settog(false)}>
       <div className="m-12 bg-white max-w-[500px] rounded-xl duration-700 p-5 h-[50%] flex flex-col justify-center items-center  w-[80%] gap-[10%] ">
-        <p className="text-5xl font-bold  lg:text-6xl md:text-6xl md:-mt-[5%]">
+        <p className="text-4xl font-bold  lg:text-6xl md:text-6xl md:-mt-[5%]">
           <span className="text-[#6c63ff]">A</span>L
           <span className="text-[#6c63ff]">A</span>P
           <span className="text-[#ff6583]">A</span>
@@ -25,7 +25,7 @@ function Finalnotice({settog, getdata}) {
         <button className="bg-[#ff6583] hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg md:mt-[10%] font-medium tracking-wider border-2 border-[#ff6583] hover:border-[#ff6583] text-white hover:text-[#ff6583] rounded-full transition ease-in duration-300"
         onClick={()=> getdata()}
         >
-          SIGNUP
+          BEGIN
         </button>
       </div>
     </div>
