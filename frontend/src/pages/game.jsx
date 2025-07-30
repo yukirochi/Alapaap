@@ -16,7 +16,7 @@ function Game() {
         <div className="w-[80%] h-[40%] border-[1px] rounded-sm max-w-[500px] flex justify-center text-center items-center">
           <p className="w-[80%]"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum tenetur eos suscipit, repudiandae modi fuga perferendis dolore sequi beatae mollitia autem nesciunt ad, ipsam ullam iure aut laborum incidunt unde!</p>
         </div>
-        <div className="w-[80%] h-[5%] flex justify-center items-center text-[20px]">
+        <div className="w-[80%] h-[5%] flex justify-center items-center text-[20px] mt-[10px]">
           00:00
         </div>
         <div className="w-[80%] h-[50%] flex flex-col items-center justify-center gap-[5%]">
