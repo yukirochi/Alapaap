@@ -1,7 +1,7 @@
 function Slider() {
   return (
     <div className="w-[100%] h-[5%]  flex items-center justify-center flex-col ">
-        <div className="w-[70%] h-[30%] flex justify-between items-center mb-5 font-bold">
+        <div className="w-[70%] h-[30%] flex justify-between items-center mb-5 font-bold ">
         <p className="text-[green]">.</p>
         <p className="text-[green]">.</p>
         <p className="text-[green]">.</p>
@@ -14,7 +14,7 @@ function Slider() {
         <p className="text-[purple]">.</p>
       </div>
       <div className="w-[70%] h-[30%] flex justify-between items-center mb-5 font-bold">
-        <p>1</p>
+        <p >1</p>
         <p>2</p>
         <p>3</p>
         <p>4</p>
@@ -31,7 +31,8 @@ function Slider() {
         min="1"
         max="10"
         step="1"
-        value="1"
+        value="3"
+        disabled
       />
     </div>
   );
