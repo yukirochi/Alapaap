@@ -19,3 +19,8 @@ code {
 *{
   cursor: pointer;
 }
+.choice :active{
+  color: white;
+  background-color: #ff6583;
+  border: #ff6583;
+}
