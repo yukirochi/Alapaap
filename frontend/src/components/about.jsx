@@ -13,7 +13,7 @@ function About({ closeabout }) {
       className="w-[100vw] h-[100vh] absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 z-10000 bg-[rgba(67,67,67,0.4)]"
       onClick={() => closeabout()}
     >
-      <div id="about-cont" className=" bg-white flex flex-col items-center border-[1px] border-solid w-[80%] h-[55%] absolute top-1/2 left-1/2  z-1000 transform -translate-x-1/2 -translate-y-1/2 rounded-[6px]  max-w-[500px] ">
+      <div id="about-cont" className=" bg-white flex flex-col items-center border-[1px] border-solid w-[80%] h-[55%] absolute top-1/2 left-1/2  z-1000 transform -translate-x-1/2 -translate-y-1/2 rounded-[6px]  max-w-[500px] z-10000 ">
         <div className="h-[12%] w-[100%] flex justify-center items-end">
           <p className="text-[clamp(15px,10%,30px)] font-bold">
             <span className="text-[#ff6583]">A</span>BO

@@ -10,7 +10,7 @@ function LandingHeader({ openaboutt, openlogin, opensign, opennotice}) {
     };
   })
   return (
-    <header id="landinghead" className="bg-gray-700 h-[50%] w-[150%] absolute bottom-[-10%] right-[-86%] rotate-[120deg] flex justify-center items-center z-5 lg:right-[-70%] lg:h-[60%] lg:rotate-[130deg]">
+    <header id="landinghead" className="bg-gray-700 h-[50%] w-[150%] absolute bottom-[-10%] right-[-86%] rotate-[120deg] flex justify-center items-center lg:right-[-70%] lg:h-[60%] lg:rotate-[130deg]">
       <div className="relative w-[100%] h-[100%] ">
         <div className="absolute bottom-[-5%] right-[] left-[50%]  rotate-[-120deg] flex flex-col w-[20%] h-[70%] items-center text-[clamp(1.3rem,2vw,2rem)] gap-[7%] text-[#6c63ff] lg:rotate-[-130deg] lg:bottom-[60%] lg:top-[20%] lg:left-[40%]">
           <NavLink
