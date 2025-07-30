@@ -16,3 +16,6 @@ code {
     monospace;
 }
 
+*{
+  cursor: pointer;
+}
