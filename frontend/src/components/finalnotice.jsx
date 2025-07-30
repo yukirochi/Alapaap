@@ -4,7 +4,7 @@ function Finalnotice({settog, getdata}) {
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-1000 bg-[rgba(67,67,67,0.4)] flex items-center justify-center"
     onClick={()=> settog(false)}>
-      <div className="m-12 bg-white max-w-[500px] rounded-xl duration-700 p-5 h-[50%] flex flex-col justify-center items-center  w-[80%] gap-[10%] ">
+      <div className="m-12 bg-white max-w-[500px] rounded-xl duration-700 p-5 h-[60%] flex flex-col justify-center items-center  w-[80%] gap-[10%] ">
         <p className="text-4xl font-bold  lg:text-6xl md:text-6xl md:-mt-[5%]">
           <span className="text-[#6c63ff]">A</span>L
           <span className="text-[#6c63ff]">A</span>P

@@ -107,6 +107,9 @@ module.exports = {
       screens: {
         "max-sm": { max: "375px" },
       },
+      colors: {
+        pinkish: "#ff6583",
+      },
     },
   },
   plugins: [],

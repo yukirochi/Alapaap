@@ -31,7 +31,7 @@ function Loginuser() {
   return (
     <div className="w-[100%] h-[60%] mt-[10%]">
       <form
-        className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
+        className="w-[100%] h-[100%]  max-sm:relative max-sm:z-10"
         onSubmit={(e) => Onlogin(e, username, password, setwrongstats, navigate)}
       >
         <div className="h-[80px]">

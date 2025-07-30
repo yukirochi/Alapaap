@@ -10,8 +10,8 @@ function Game() {
     document.querySelectorAll(".choice").forEach((elm) => {
       elm.classList.remove(
         "shadow-lg",
-        "bg-[rgb(255,101,131)]",
-        "border-[rgb(255,101,131)]",
+        "bg-pinkish",
+        "border-pinkish",
         "text-white"
       );
     });
@@ -20,8 +20,8 @@ function Game() {
       .getElementsByClassName(`${num}`)[0]
       .classList.add(
         "shadow-lg",
-        "bg-[rgb(255,101,131)]",
-        "border-[rgb(255,101,131)]",
+        "bg-pinkish",
+        "border-pinkish",
         "text-white"
       );
   };

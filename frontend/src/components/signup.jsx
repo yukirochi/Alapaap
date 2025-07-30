@@ -48,7 +48,7 @@ function Signupuser() {
   return (
     <div className="w-[100%] h-[60%] ">
       <form
-        className="w-[100%] h-[100%]  max-sm:relative max-sm:z-30"
+        className="w-[100%] h-[100%]  max-sm:relative max-sm:z-10"
         onSubmit={(e) =>
           Onsignup(
             e,
