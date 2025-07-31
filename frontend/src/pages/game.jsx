@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Gameheader from "../headers/gameheader";
 import Slider from "../components/slider";
 import { useLocation } from "react-router-dom";
+import Checking from "../components/checking";
 
 function Game() {
   let [life, setlife] = useState(3);
-  let [level, setlevel] = useState(10);
+  let [level, setlevel] = useState(1);
   const location = useLocation();
   let nickname = location.state?.nickname;
   let subject = location.state?.selected;
@@ -14,7 +15,11 @@ function Game() {
   let [choices, setchoices] = useState([]);
   let [correctAnswer, setcorrectAnswer] = useState("");
   let [useranswer, setuseranswer] = useState("");
-  let [points, setpoints] = useState(0)
+  let [points, setpoints] = useState(0);
+  let [answerstats, setanswerstats] = useState(false)
+  let [opencheck, setopencheck] = useState(false)
+  
+  let closethecheck = () => setopencheck(false);
   useEffect(() => {
     let getquiz = async () => {
       let easy = await fetch(
@@ -53,16 +58,19 @@ function Game() {
       setcorrectAnswer(currentquestion.correctAnswer);
     }
   }, [currentquestion]);
-  
+
   const verifyanswer = () => {
-    if(useranswer === correctAnswer){
-      setpoints(points + 1)
-      alert("Correct")
-    }else{
-      setlife(life - 1)
-      alert("wrong")
+    if (useranswer === correctAnswer) {
+      setpoints(points + 1);
+      setlevel(level + 1);
+      selected("");
+      setanswerstats(true)
+    } else {
+      setlife(life - 1);
+      selected("");
+      setanswerstats(false)
     }
-  }
+  };
 
   const selected = (num) => {
     document.querySelectorAll(".choice").forEach((elm) => {
@@ -74,9 +82,16 @@ function Game() {
       );
     });
 
-    document
-      .getElementsByClassName(`${num}`)[0]
-      .classList.add("shadow-lg", "bg-pinkish", "border-pinkish", "text-white");
+    if (num) {
+      document
+        .getElementsByClassName(`${num}`)[0]
+        .classList.add(
+          "shadow-lg",
+          "bg-pinkish",
+          "border-pinkish",
+          "text-white"
+        );
+    }
   };
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden">
@@ -134,8 +149,12 @@ function Game() {
           </div>
         </div>
         <div className="w-[100%] h-[5%] flex justify-center items-center flex-col">
-          <button className="bg-[#6c63ff] hover:bg-transparent px-5 py-2 text-sm shadow-sm hover:shadow-lg  font-medium tracking-wider border-2 border-[#6c63ff] hover:border-[#6c63ff] text-white hover:text-[#6c63ff] rounded-full transition ease-in duration-300"
-          onClick={()=> verifyanswer()}
+          <button
+            className="bg-[#6c63ff] hover:bg-transparent px-5 py-2 text-sm shadow-sm hover:shadow-lg  font-medium tracking-wider border-2 border-[#6c63ff] hover:border-[#6c63ff] text-white hover:text-[#6c63ff] rounded-full transition ease-in duration-300"
+            onClick={() => {
+              verifyanswer()
+              setopencheck(true)
+            }}
           >
             SUBMIT
           </button>
@@ -144,6 +163,8 @@ function Game() {
           </p>
         </div>
       </div>
+
+        {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} />} 
     </div>
   );
 }
