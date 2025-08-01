@@ -3,6 +3,8 @@ import Gameheader from "../headers/gameheader";
 import Slider from "../components/slider";
 import { useLocation } from "react-router-dom";
 import Checking from "../components/checking";
+import Failednotice from "../components/failednotice";
+
 
 function Game() {
   let [life, setlife] = useState(3);
@@ -18,6 +20,8 @@ function Game() {
   let [points, setpoints] = useState(0);
   let [answerstats, setanswerstats] = useState(false)
   let [opencheck, setopencheck] = useState(false)
+  let [failed, setfailed] = useState(false)
+  
   
   let closethecheck = () => setopencheck(false);
   useEffect(() => {
@@ -69,6 +73,7 @@ function Game() {
       setlife(life - 1);
       selected("");
       setanswerstats(false)
+     
     }
   };
 
@@ -164,7 +169,8 @@ function Game() {
         </div>
       </div>
 
-        {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} />} 
+        {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} setfailed={setfailed} life={life}/>} 
+        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints}/>}
     </div>
   );
 }
