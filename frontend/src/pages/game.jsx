@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Gameheader from "../headers/gameheader";
 import Slider from "../components/slider";
 import { useLocation } from "react-router-dom";
 import Checking from "../components/checking";
 import Failednotice from "../components/failednotice";
+import Successnotice from "../components/successnotice";
 
 
 function Game() {
@@ -21,7 +22,19 @@ function Game() {
   let [answerstats, setanswerstats] = useState(false)
   let [opencheck, setopencheck] = useState(false)
   let [failed, setfailed] = useState(false)
+  let [scores, setscores] = useState([])
+  let [finalscore, setfinalscore] = useState(0)
+  let [success, setsuccess] = useState(false)
   
+  
+  let calculatewin = () => {
+    setfinalscore( (points / 10) * 100)
+  }
+  
+  let handledanswers  = (val) => {
+    setanswerstats(val)
+    setscores(prev => [...prev, val ? "win" : "lost"]);
+  }
   
   let closethecheck = () => setopencheck(false);
   useEffect(() => {
@@ -69,11 +82,13 @@ function Game() {
       setlevel(level + 1);
       selected("");
       setanswerstats(true)
+      handledanswers(true)
     } else {
       setlife(life - 1);
       selected("");
+      setlevel(level + 1);
       setanswerstats(false)
-     
+      handledanswers(false)
     }
   };
 
@@ -169,8 +184,9 @@ function Game() {
         </div>
       </div>
 
-        {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} setfailed={setfailed} life={life}/>} 
-        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints}/>}
+        {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} setfailed={setfailed} life={life} calculatewin = {calculatewin} setsuccess={setsuccess} level = {level}/>} 
+        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore}/>}
+        {success && <Successnotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore}/>}
     </div>
   );
 }

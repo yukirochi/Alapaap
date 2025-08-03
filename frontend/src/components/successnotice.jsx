@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscores, finalscore}) {
+function Successnotice({setlevel, setlife, setfailed, setpoints, scores, setscores, finalscore}) {
   
     return ( 
      <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1000] bg-[rgba(67,67,67,0.4)] flex items-center justify-center">
@@ -14,14 +14,14 @@ function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscore
 >
   <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
     <div className="flex items-start justify-between">
-      <h2 id="modalTitle" className="text-5xl font-bold  w-[100%] flex justify-center material-symbols-outlined "><p className="text-red-900 ">sentiment_neutral</p></h2>
+      <h2 id="modalTitle" className="text-5xl font-bold  w-[100%] flex justify-center material-symbols-outlined "><p className="text-green-900 ">sentiment_excited</p></h2>
 
     
     </div>
 
     <div className="mt-4">
       <p className="text-pretty text-gray-700 text-center">
-        You got defeated and you failed to reach the alapaap 
+        Congratulations for reaching the alapaap
       </p>
 
       <label htmlFor="Confirm" className="mt-4 block w-[100%] text-center">
@@ -68,4 +68,4 @@ function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscore
      );
 }
 
-export default Failednotice;
+export default Successnotice;

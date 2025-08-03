@@ -1,4 +1,15 @@
-function Checking({ answerstats, points, closethecheck, setfailed, life }) {
+import { useEffect } from "react";
+
+function Checking({
+  answerstats,
+  points,
+  closethecheck,
+  setfailed,
+  life,
+  calculatewin,
+  setsuccess,
+  level
+}) {
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-1000 bg-[rgba(67,67,67,0.4)] flex items-center justify-center">
       <div
@@ -26,10 +37,14 @@ function Checking({ answerstats, points, closethecheck, setfailed, life }) {
                 class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
                 onClick={() => {
                   if (life === 0) {
+                    calculatewin();
                     setfailed(true);
                     closethecheck();
-                  }else{
-                    closethecheck()
+                  } else if (level > 10) {
+                    calculatewin();
+                    setsuccess(true);
+                  } else {
+                    closethecheck();
                   }
                 }}
               >
