@@ -27,6 +27,7 @@ function Game() {
   let [success, setsuccess] = useState(false)
   
   
+  
   let calculatewin = () => {
     setfinalscore( (points / 10) * 100)
   }

@@ -8,12 +8,14 @@ import teknolohiya from "../assets/teknolohiya.webp";
 import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import Finalnotice from "../components/finalnotice";
+import Openlogout from "../components/logout";
 function Lobby() {
   let [select, setselect] = useState("");
   const location = useLocation();
   let nickname = location.state?.username || "guest";
   const navigate = useNavigate();
   let [tog, settog] = useState(false)
+  let [openlog, setopenlog] = useState(false)
   let subjects = [
     {
       name: "Science",
@@ -62,7 +64,7 @@ function Lobby() {
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
-      <Lobbyheader nickname={nickname} />
+      <Lobbyheader nickname={nickname} setopenlog={setopenlog}/>
       <div className=" w-[100%] h-[5%] flex justify-center items-center">
         <p className="text-5xl font-bold  lg:text-6xl md:text-6xl">
           <span className="text-[#6c63ff]">A</span>L
@@ -142,6 +144,7 @@ function Lobby() {
         Login to be in Leaderboard
       </p>
       {tog && <Finalnotice settog={settog} getdata={getdata}/>}
+      {openlog && <Openlogout setopenlog={setopenlog}></Openlogout>} 
     </div>
   );
 }

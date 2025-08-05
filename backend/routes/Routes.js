@@ -4,6 +4,7 @@ const {
   signup,
   insertscore,
   getalldata,
+  getuserid,
 } = require("../controllers/controller");
 
 const router = express.Router();
@@ -15,5 +16,7 @@ router.post("/login", login);
 router.post("/signup", signup);
 
 router.patch("/:id", insertscore);
+
+router.post("/getuserid", getuserid);
 
 module.exports = router;

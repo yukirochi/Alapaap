@@ -21,6 +21,7 @@ const signup = async (req, res) => {
   if (verifyemail) {
     return res.json({ msg: "Email is already used", var: "emailprob", stats: false});
   }
+  
 
   let verifyname = await model.findOne({ username: username });
 
@@ -33,8 +34,8 @@ const signup = async (req, res) => {
     email: email,
     password: password,
   });
-
-  res.json({ msg: "Account Created" });
+  let userinfo = await model.findOne({username: username})
+  res.json({ msg: "Account Created", user: userinfo });
 };
 
 const insertscore = async (req, res) => {
@@ -66,9 +67,18 @@ const getalldata = async (req, res) => {
   res.json({ data: data });
 };
 
+const getuserid = async (req, res) => {
+  let {username} = req.body;
+  
+  let userinfo = await model.findOne({username: username})
+
+  res.json({userinfo: userinfo})
+}
+
 module.exports = {
   login,
   signup,
   insertscore,
   getalldata,
+  getuserid
 };

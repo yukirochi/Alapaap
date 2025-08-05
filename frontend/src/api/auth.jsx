@@ -30,8 +30,16 @@ export const Onsignup = async (
     if (!res.ok) throw new Error("Network Error");
     let resp = await res.json();
 
-    if (resp.var === "emailprob") veremail(true);
-    if (resp.var === "userprob") veruser(true);
+    if (resp.var === "emailprob") {
+      veremail(true);
+      return;
+    } 
+    if (resp.var === "userprob") {
+      veruser(true);
+      return;
+    }
+    console.log(resp.user);
+    
     alert(resp.msg);
     navigate("/lobby", { state: { username: varusername } });
   } catch (error) {
@@ -64,7 +72,10 @@ export const Onlogin = async (
     if (resp.var === "failed") {
       varstats(true);
       alert(resp.msg);
+      return;
     }
+    console.log(resp.user);
+    
     alert(resp.msg);
     navigate("/lobby", { state: { username: varusername } });
   } catch (error) {
