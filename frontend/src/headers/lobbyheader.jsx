@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Uselogs } from "../auth/providers";
 import Userhead from "../components/userhead";
-function Lobbyheader({ nickname, setopenlog }) {
+function Lobbyheader({ nickname, setopenlog,userinfo }) {
   let [info, setinfo] = useState("dasdasas");
-
+  let navigate = useNavigate()
   useEffect(() => {
     const playnav = document.querySelector(".playnav");
     if (playnav) {
@@ -16,19 +16,8 @@ function Lobbyheader({ nickname, setopenlog }) {
     if (name.toLowerCase() === "guest" || name === "" || name === null) {
       return;
     }
-
-    let data = { username: name };
-    let res = await fetch("http://localhost:4001/api/getuserid", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) throw new Error("Network Error");
-    let resp = await res.json();
-    console.log(resp);
+    
+     navigate(`/profile/${userinfo._id}`,{state:{userinfo: userinfo}})
   };
 
   return (

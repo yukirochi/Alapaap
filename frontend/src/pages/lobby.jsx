@@ -13,9 +13,11 @@ function Lobby() {
   let [select, setselect] = useState("");
   const location = useLocation();
   let nickname = location.state?.username || "guest";
+  let userinfo = location.state?.userinfo;
+
   const navigate = useNavigate();
-  let [tog, settog] = useState(false)
-  let [openlog, setopenlog] = useState(false)
+  let [tog, settog] = useState(false);
+  let [openlog, setopenlog] = useState(false);
   let subjects = [
     {
       name: "Science",
@@ -42,9 +44,22 @@ function Lobby() {
     if (select === "") {
       alert("pls choose a scarf first");
       return;
-    }   
-    
-    navigate("/game", { state: { selected: select, nickname: nickname } });
+    }
+
+    if (
+      nickname.toLowerCase() === "guest" ||
+      nickname === "" ||
+      nickname === null
+    ) {
+      navigate("/game/guest", {
+        state: { selected: select, nickname: nickname },
+      });
+    }else{
+       navigate(`/game/${userinfo._id}`, {
+        state: { selected: select, nickname: nickname },
+      });
+    }
+  
   };
 
   const selected = (items) => {
@@ -64,7 +79,11 @@ function Lobby() {
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
-      <Lobbyheader nickname={nickname} setopenlog={setopenlog}/>
+      <Lobbyheader
+        nickname={nickname}
+        setopenlog={setopenlog}
+        userinfo={userinfo}
+      />
       <div className=" w-[100%] h-[5%] flex justify-center items-center">
         <p className="text-5xl font-bold  lg:text-6xl md:text-6xl">
           <span className="text-[#6c63ff]">A</span>L
@@ -143,8 +162,8 @@ function Lobby() {
       <p className="w-[100%] text-center text-[10px]">
         Login to be in Leaderboard
       </p>
-      {tog && <Finalnotice settog={settog} getdata={getdata}/>}
-      {openlog && <Openlogout setopenlog={setopenlog}></Openlogout>} 
+      {tog && <Finalnotice settog={settog} getdata={getdata} />}
+      {openlog && <Openlogout setopenlog={setopenlog}></Openlogout>}
     </div>
   );
 }

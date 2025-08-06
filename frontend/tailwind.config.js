@@ -109,6 +109,7 @@ module.exports = {
       },
       colors: {
         pinkish: "#ff6583",
+        bluish: "#6c63ff",
       },
     },
   },

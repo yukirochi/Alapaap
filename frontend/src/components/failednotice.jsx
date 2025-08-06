@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscores, finalscore}) {
-  
+   let {id} = useParams()
+   const savescore = async() =>{
+    try {
+      let res = await fetch()
+    } catch (error) {
+      console.error(error);
+    }
+   }
+
     return ( 
      <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1000] bg-[rgba(67,67,67,0.4)] flex items-center justify-center">
 

@@ -41,7 +41,7 @@ export const Onsignup = async (
     console.log(resp.user);
     
     alert(resp.msg);
-    navigate("/lobby", { state: { username: varusername } });
+    navigate("/lobby", { state: { username: varusername, userinfo: resp.user} });
   } catch (error) {
     console.error(error);
   }
@@ -77,7 +77,7 @@ export const Onlogin = async (
     console.log(resp.user);
     
     alert(resp.msg);
-    navigate("/lobby", { state: { username: varusername } });
+    navigate("/lobby", { state: { username: varusername, userinfo: resp.user } });
   } catch (error) {
     console.error(error);
   }

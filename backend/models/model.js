@@ -17,7 +17,16 @@ const UserSchema = new Schema(
       required: true,
     },
     Score: {
-      type: [Number],
+      type: [
+        {
+          value: Number,
+          subject: String,
+          date: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
       default: [],
     },
   },

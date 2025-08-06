@@ -15,7 +15,7 @@ router.post("/login", login);
 
 router.post("/signup", signup);
 
-router.patch("/:id", insertscore);
+router.patch("/game/:id", insertscore);
 
 router.post("/getuserid", getuserid);
 
