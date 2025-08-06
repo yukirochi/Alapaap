@@ -14,6 +14,8 @@ function Lobby() {
   const location = useLocation();
   let nickname = location.state?.username || "guest";
   let userinfo = location.state?.userinfo;
+  console.log(location.state);
+    
 
   const navigate = useNavigate();
   let [tog, settog] = useState(false);
