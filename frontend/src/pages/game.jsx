@@ -189,8 +189,8 @@ function Game() {
       </div>
 
         {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} setfailed={setfailed} life={life} calculatewin = {calculatewin} setsuccess={setsuccess} level = {level}/>} 
-        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname}/>}
-        {success && <Successnotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname}/>}
+        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname} subject={subject}/>}
+        {success && <Successnotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname} subject={subject}/>}
     </div>
   );
 }
