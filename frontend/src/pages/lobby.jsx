@@ -14,7 +14,6 @@ function Lobby() {
   const location = useLocation();
   let nickname = location.state?.username || "guest";
   let userinfo = location.state?.userinfo;
-  console.log(location.state);
     
 
   const navigate = useNavigate();
@@ -54,11 +53,11 @@ function Lobby() {
       nickname === null
     ) {
       navigate("/game/guest", {
-        state: { selected: select, nickname: nickname },
+        state: { selected: select, nickname: nickname, userinfo:userinfo },
       });
     }else{
        navigate(`/game/${userinfo._id}`, {
-        state: { selected: select, nickname: nickname },
+        state: { selected: select, nickname: nickname,userinfo:userinfo },
       });
     }
   

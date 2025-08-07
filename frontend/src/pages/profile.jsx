@@ -76,7 +76,7 @@ function Profile() {
             <div className="relative  md:w-[80%] h-[85%] mt-[5%] sm:w-[100%] ">
               <table className=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 w-[100%]">
                 <thead class="text-xs text-black uppercase bg-pinkish  dark:text-gray-400">
-                  <tr>
+                  <tr className="sticky">
                     <th scope="col" class="px-6 py-3">
                       No.
                     </th>

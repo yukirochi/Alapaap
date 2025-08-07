@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 
-function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscores, finalscore}) {
+function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscores, finalscore,userinfo,nickname}) {
    let {id} = useParams()
+   const navigate = useNavigate()
+   
    const savescore = async() =>{
     try {
       let res = await fetch()
@@ -47,13 +49,15 @@ function Failednotice({setlevel, setlife, setfailed, setpoints, scores, setscore
     </div>
 
     <footer className="mt-6 flex justify-center gap-2 ">
-      <NavLink 
+      <button
         type="button"
         className="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
-        to="/lobby"
+        onClick={()=>{
+          navigate("/lobby", { state: { username: nickname, userinfo: userinfo} });
+        }}
       >
         Return
-      </NavLink>
+      </button>
 
       <button  
         type="button"

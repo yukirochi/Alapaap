@@ -5,14 +5,16 @@ import { useLocation } from "react-router-dom";
 import Checking from "../components/checking";
 import Failednotice from "../components/failednotice";
 import Successnotice from "../components/successnotice";
-
+import { useNavigate } from "react-router-dom";
 
 function Game() {
   let [life, setlife] = useState(3);
   let [level, setlevel] = useState(1);
   const location = useLocation();
+  const navigate = useNavigate
   let nickname = location.state?.nickname;
   let subject = location.state?.selected;
+  let userinfo = location.state?.userinfo;
   let [currentquestion, setcurrentquestion] = useState(null);
   let [question, setquestion] = useState([]);
   let [choices, setchoices] = useState([]);
@@ -25,6 +27,7 @@ function Game() {
   let [scores, setscores] = useState([])
   let [finalscore, setfinalscore] = useState(0)
   let [success, setsuccess] = useState(false)
+ 
   
   
   
@@ -186,8 +189,8 @@ function Game() {
       </div>
 
         {opencheck && <Checking answerstats={answerstats} points={points} closethecheck={closethecheck} setfailed={setfailed} life={life} calculatewin = {calculatewin} setsuccess={setsuccess} level = {level}/>} 
-        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore}/>}
-        {success && <Successnotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore}/>}
+        {failed && <Failednotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname}/>}
+        {success && <Successnotice setlife={setlife} setlevel={setlevel} setfailed={setfailed} setpoints={setpoints} scores = {scores} setscores = {setscores} finalscore = {finalscore} userinfo={userinfo} nickname={nickname}/>}
     </div>
   );
 }
