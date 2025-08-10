@@ -24,7 +24,7 @@ function About({ closeabout }) {
         <div className="h-[20%] w-[80%] text-center text-[13px] mt-[10px] max-sm:text-[10px]">
           A trivia game that the main goal is to achieve the alapaap (clouds)
           there 5 different characters the user can take (agham,
-          matematika,pulitika,heograpiya, teknolohiya) 
+          General,pulitika,heograpiya, musika) 
         </div>
          <div className="h-[40%] w-[80%] text-center text-[13px] mt-[10px] max-sm:text-[10px] lg:h-[30%] md:h-[30%]">
          every characters have

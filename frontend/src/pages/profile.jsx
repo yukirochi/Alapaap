@@ -1,12 +1,18 @@
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
+import Changepass from "../components/changepass";
+import { useState } from "react";
 
 function Profile() {
   const location = useLocation();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   let userinfo = location.state?.userinfo;
-  
+  let scores = userinfo.Score;
+  let [changetab, setchangetab] = useState(true);
+
   return (
-    <div className="w-[100vw] h-[100vh]">
+    <div
+      className="w-[100vw] h-[100vh]"
+    >
       <div className="h-[7%] w-[100%] flex justify-center items-center lg:hidden">
         <p className="text-2xl font-bold  lg:text-5xl md:text-4xl">
           <span className="text-[#6c63ff]">A</span>L
@@ -42,24 +48,29 @@ function Profile() {
                 email
               </p>
             </div>
-            <div className="w-[100%] h-[50%] flex flex-col justify-around items-center">
-              <button className="w-[200px] h-[30px] border-[1px] border-black border-[solid] rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-bluish">
-                Change Email
-              </button>
-              <button className="w-[200px] h-[30px] border-[1px] border-black border-[solid] rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-bluish">
+            <div className="w-[100%] h-[40%] flex flex-col justify-around items-center">
+              <button
+                className="w-[200px] h-[30px] border-[1px] border-black border-[solid] rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-bluish"
+                onClick={() => {
+                 
+                  setchangetab(true);
+                }}
+              >
                 Change Password
               </button>
               <button className="w-[200px] h-[30px] border-[1px] border-black border-[solid] rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-bluish">
                 Contact Support
               </button>
-              <button className="w-[200px] h-[30px] border-[1px] border-black border-[solid] text-center rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-pinkish"
-               onClick={()=>{
-                navigate("/lobby",{state:{userinfo:userinfo, username: userinfo.username}})
-               }}
+              <button
+                className="w-[200px] h-[30px] border-[1px] border-black border-[solid] text-center rounded-[5px] lg:w-[250px] lg:h-[60px] md:h-[40px] md:text-xl lg:text-xl text-pinkish"
+                onClick={() => {
+                  navigate("/lobby", {
+                    state: { userinfo: userinfo, username: userinfo.username },
+                  });
+                }}
               >
                 Home
               </button>
-              
             </div>
           </main>
         </div>
@@ -92,78 +103,23 @@ function Profile() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">1</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                    <td class="px-6 py-4">2</td>
-                    <td class="px-6 py-4">Agham</td>
-                    <td class="px-6 py-4">80%</td>
-                    <td class="px-6 py-4">10/1/25</td>
-                  </tr>
+                  {scores.map((score, index) => (
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                      <td class="px-6 py-4">{index}</td>
+                      <td class="px-6 py-4">{score.subject}</td>
+                      <td class="px-6 py-4">{score.value}%</td>
+                      <td class="px-6 py-4">
+                        {new Date(score.date).toLocaleDateString("en-US")}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </main>
         </div>
       </div>
+      {changetab && <Changepass userinfo={userinfo} setchangetab={setchangetab}></Changepass>}
     </div>
   );
 }

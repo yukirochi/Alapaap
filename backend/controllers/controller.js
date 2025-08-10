@@ -83,14 +83,42 @@ const insertscore = async (req, res) => {
 };
 
 const getalldata = async (req, res) => {
-  let data = await model.find().sort({ score: -1 });
-
-  if (!data) {
-    return res.json({ msg: "data doesnt exist" });
-  }
-
-  res.json({ data: data });
+  const topscore = await model.aggregate([
+    {$unwind: "$Score"},
+    {$sort:{"Score.value": - 1}},
+    {$limit: 10},
+    {
+      $project:{
+        _id: 0,
+        username: 1,
+        subject: "$Score.subject",
+        value: "$Score.value",
+        date: "$Score.date"
+      }
+    }
+  ])  
+  res.json({data: topscore})
 };
+
+const updatepassword = async(req, res) => {
+  let {id} = req.params;
+  let {password} = req.body;
+  
+  const updatepass = await model.findOneAndUpdate(
+    {_id:id},
+    {$set: {password:password}},
+    {new:true}
+  )
+
+  if(!updatepass){
+    res.json({msg:"password failed to changed"})
+  }
+    res.json({msg:"password has been changed successfully"})
+  
+
+  
+
+}
 
 const getuserid = async (req, res) => {
   let { username } = req.body;
@@ -106,4 +134,5 @@ module.exports = {
   insertscore,
   getalldata,
   getuserid,
+  updatepassword
 };

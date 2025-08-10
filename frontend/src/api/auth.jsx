@@ -25,7 +25,7 @@ export const Onsignup = async (
       body: JSON.stringify(data),
     });
 
-    console.log("Status code:", res.status);
+    
 
     if (!res.ok) throw new Error("Network Error");
     let resp = await res.json();
@@ -38,7 +38,7 @@ export const Onsignup = async (
       veruser(true);
       return;
     }
-    console.log(resp.user);
+   
     
     alert(resp.msg);
     navigate("/lobby", { state: { username: varusername, userinfo: resp.user} });
@@ -74,8 +74,7 @@ export const Onlogin = async (
       alert(resp.msg);
       return;
     }
-    console.log(resp.user);
-    
+  
     alert(resp.msg);
     navigate("/lobby", { state: { username: varusername, userinfo: resp.user } });
   } catch (error) {

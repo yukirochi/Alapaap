@@ -5,11 +5,12 @@ const {
   insertscore,
   getalldata,
   getuserid,
+  updatepassword
 } = require("../controllers/controller");
 
 const router = express.Router();
 
-router.get("/", getalldata);
+router.get("/leaderboard", getalldata);
 
 router.post("/login", login);
 
@@ -18,5 +19,7 @@ router.post("/signup", signup);
 router.patch("/game/:id", insertscore);
 
 router.post("/getuserid", getuserid);
+
+router.patch("/profile/:id", updatepassword);
 
 module.exports = router;

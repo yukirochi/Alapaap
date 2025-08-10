@@ -57,7 +57,6 @@ function Game() {
       let infoarr = await Promise.all(diff.map((res) => res.json()));
 
       let questions = infoarr.flat();
-      console.log(questions);
       setquestion(questions);
     };
     getquiz();
