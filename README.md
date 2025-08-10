@@ -1,4 +1,5 @@
 <h1 align="center">ALPAAP</h1>
+![Alt text](alapaapreadme.png)
 <h6 align="center">Alapaap is an engaging quiz-based adventure game where players strive to climb their way to the clouds — the legendary Alapaap. The journey is divided into stages, each presenting a set of thought-provoking questions. Every correct answer brings the player closer to the top, but mistakes cost precious hearts. Starting with 3 hearts, the challenge is to reach the final stage and face the formidable boss without losing them all. If all hearts are lost before reaching the boss, the climb ends in defeat. With its mix of strategy, knowledge, and tension, Alapaap tests both your mind and your determination to soar above the skies.</h3>
 
 - 🔭 I’m currently working on [alapaap](facebook.com)
