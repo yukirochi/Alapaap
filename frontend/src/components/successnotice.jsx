@@ -25,7 +25,7 @@ function Successnotice({
       ) {
         return;
       }
-      let res = await fetch(`http://localhost:4001/api/game/${id}`, {
+      let res = await fetch(`https://alapaap-rsmj.onrender.com/api/game/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

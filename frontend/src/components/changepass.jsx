@@ -26,7 +26,7 @@ function Changepass({ userinfo, setchangetab }) {
 
     try {
       let res = await fetch(
-        `http://localhost:4001/api/profile/${userinfo._id}`,
+        `https://alapaap-rsmj.onrender.com/api/profile/${userinfo._id}`,
         {
           method: "PATCH",
           headers: {

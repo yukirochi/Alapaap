@@ -19,7 +19,7 @@ function Leaderboard() {
   useEffect(() => {
     let leaddata = async () => {
       try {
-        let res = await fetch("http://localhost:4001/api/leaderboard");
+        let res = await fetch("https://alapaap-rsmj.onrender.com/api/leaderboard");
         let data = await res.json();
         settabledata(data.data);
       } catch (error) {

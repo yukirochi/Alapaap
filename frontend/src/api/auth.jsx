@@ -17,7 +17,7 @@ export const Onsignup = async (
   };
 
   try {
-    const res = await fetch("http://localhost:4001/api/signup", {
+    const res = await fetch("https://alapaap-rsmj.onrender.com/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const Onlogin = async (
       username: varusername,
       password: varpassword,
     };
-    let res = await fetch("http://localhost:4001/api/login", {
+    let res = await fetch("https://alapaap-rsmj.onrender.com/api/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
