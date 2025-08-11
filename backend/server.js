@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://alapaap-t62s.vercel.app/"
 }))
 
 app.use((req, res, next) => {
