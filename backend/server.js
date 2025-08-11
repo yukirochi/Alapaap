@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://alapaap-t62s.vercel.app/"
+  origin: "https://alapaap-t62s.vercel.app"
 }))
 
 app.use((req, res, next) => {
