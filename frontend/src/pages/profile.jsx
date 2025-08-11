@@ -7,7 +7,7 @@ function Profile() {
   let navigate = useNavigate();
   let userinfo = location.state?.userinfo;
   let scores = userinfo.Score;
-  let [changetab, setchangetab] = useState(true);
+  let [changetab, setchangetab] = useState(false);
 
   return (
     <div
@@ -85,8 +85,8 @@ function Profile() {
           </header>
           <main className="w-[100%] h-[90%] flex justify-center overflow-x-auto ">
             <div className="relative  md:w-[80%] h-[85%] mt-[5%] sm:w-[100%] ">
-              <table className=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 w-[100%]">
-                <thead class="text-xs text-black uppercase bg-pinkish  dark:text-gray-400">
+              <table className=" text-sm text-left rtl:text-right text-gray-500  w-[100%]">
+                <thead class="text-xs text-black uppercase bg-pinkish  ">
                   <tr className="sticky">
                     <th scope="col" class="px-6 py-3">
                       No.
@@ -104,7 +104,7 @@ function Profile() {
                 </thead>
                 <tbody>
                   {scores.map((score, index) => (
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <tr class="bg-white border-b   border-gray-200">
                       <td class="px-6 py-4">{index}</td>
                       <td class="px-6 py-4">{score.subject}</td>
                       <td class="px-6 py-4">{score.value}%</td>

@@ -53,7 +53,7 @@ function Changepass({ userinfo, setchangetab }) {
       }}
     >
       <div class="relative py-3 sm:max-w-xs sm:mx-auto">
-        <div class="min-h-96 px-8 py-6 mt-4 text-left bg-white dark:bg-gray-900 rounded-xl shadow-lg"
+        <div className="min-h-96 px-8 py-6 mt-4 text-left bg-white  rounded-xl shadow-lg"
         onClick={(e)=>{
             e.stopPropagation()
         }}>
@@ -62,7 +62,7 @@ function Changepass({ userinfo, setchangetab }) {
               <div className="w-8 h-8  material-symbols-outlined text-[30px]">
                 change_circle
               </div>
-              <p class="m-0 text-[16px] font-semibold dark:text-white">
+              <p class="m-0 text-[16px] font-semibold ">
                 Change Password
               </p>
               <span class="m-0 text-xs max-w-[90%] text-center text-[#8B8E98]">
@@ -75,7 +75,7 @@ function Changepass({ userinfo, setchangetab }) {
               </label>
               <input
                 placeholder="Username"
-                class="border rounded-lg px-3 py-2 mb-5 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900"
+                class="border rounded-lg px-3 py-2 mb-5 text-sm w-full outline-none "
                 onChange={(e) => {
                   setCurrentPass(e.target.value);
                 }}
@@ -86,7 +86,7 @@ function Changepass({ userinfo, setchangetab }) {
             <label class="font-semibold text-xs text-gray-400">Password</label>
             <input
               placeholder="••••••••"
-              class="border rounded-lg px-3 py-2 mb-2 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900"
+              class="border rounded-lg px-3 py-2 mb-2 text-sm w-full outline-none "
               type="password"
               onChange={(e) => {
                 setNewpass(e.target.value);
@@ -97,7 +97,7 @@ function Changepass({ userinfo, setchangetab }) {
             </label>
             <input
               placeholder="••••••••"
-              class="border rounded-lg px-3 py-2 mb-1 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900"
+              class="border rounded-lg px-3 py-2 mb-1 text-sm w-full outline-none "
               type="password"
               onChange={(e) => {
                 setConfirmNewpass(e.target.value);
