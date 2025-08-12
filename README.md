@@ -7,7 +7,7 @@
 
 <h3 align="left">Website Link:</h3>
 <p align="left">
-https://alapaap-t62s.vercel.app/
+https://alapaap.vercel.app/
 </p>
 
 <h3 align="left">Languages and Tools used:</h3>
