@@ -1,93 +1,103 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Onlogin } from "../api/auth";
 import { useNavigate } from "react-router-dom";
-import { Uselogs } from "../auth/providers";
-import "../css/index.css"
+
 function Loginuser() {
   let [wrongstatus, setwrongstats] = useState(false);
   let [username, setusername] = useState("");
   let [password, setpassword] = useState("");
   let [showpass, setshowpass] = useState(false);
-  let navigate = useNavigate()
+  let [loading, setloading] = useState(false);
+  let navigate = useNavigate();
 
-  useEffect(() => {
-    const inp = document.querySelectorAll("input");
-    const inpp = document.getElementById("logbut");
-    const hide = document.getElementById("showpass");
-    if (inp) {
-      inpp.classList.add("animate-inpp");
-      for (let i = 0; i < inp.length; i++) {
-        inp[i].classList.add("animate-inp");
-      }
+  const handleSubmit = async (e) => {
+    setloading(true);
+    await Onlogin(e, username, password, setwrongstats, navigate);
+    setloading(false);
+  };
 
-      setTimeout(() => {
-        hide.classList.add("animate-opa");
-        hide.classList.add("opacity-100")
-      }, 600);
-      
-    }
-  
-  }, []);
+  const inputStyle = {
+    background: "rgba(108,99,255,0.06)",
+    border: "1.5px solid rgba(108,99,255,0.2)",
+    color: "var(--text)",
+    borderRadius: "12px",
+    padding: "10px 14px",
+    width: "100%",
+    outline: "none",
+    fontSize: "14px",
+    fontWeight: "500",
+    transition: "border-color 0.2s ease",
+  };
+
   return (
-    <div className="w-[100%] h-[60%] mt-[10%]">
-      <form
-        className="w-[100%] h-[100%]"
-        onSubmit={(e) => Onlogin(e, username, password, setwrongstats, navigate)}
-      >
-        <div className="h-[80px]">
-          <p className="text-[20px] mb-[5px]">
-            <span className="text-[#ff6583]">U</span>sern
-            <span className="text-[#6c63ff]">a</span>me
-          </p>
+    <div className="w-full flex flex-col pt-6 px-2">
+      <div className="text-center mb-6 fade-in">
+        <p className="logo-text text-4xl mb-2 select-none">
+          <span style={{ color: "#6c63ff" }}>A</span>L
+          <span style={{ color: "#6c63ff" }}>A</span>P
+          <span style={{ color: "#ff6583" }}>A</span>
+          <span style={{ color: "#6c63ff" }}>A</span>P
+        </p>
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase mt-1" style={{ color: "var(--muted)" }}>
+          Sign in to your account
+        </p>
+      </div>
+
+      <form className="flex flex-col gap-4 fade-in-delay" onSubmit={handleSubmit}>
+        {/* Username */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1.5" style={{ color: "var(--muted)" }}>
+            Username
+          </label>
           <input
             type="text"
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px] outline-none text-center"
-            onChange={(e) => {
-              setusername(e.target.value);
-              setwrongstats(false);
-            }}
+            style={inputStyle}
+            placeholder="Enter username"
+            onChange={(e) => { setusername(e.target.value); setwrongstats(false); }}
+            onFocus={(e) => e.target.style.borderColor = "rgba(108,99,255,0.6)"}
+            onBlur={(e) => e.target.style.borderColor = "rgba(108,99,255,0.2)"}
             required
           />
-          <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            {wrongstatus && "Wrong Username"}
-          </p>
+          {wrongstatus && (
+            <p className="text-xs mt-1" style={{ color: "#f87171" }}>⚠ Wrong username or password</p>
+          )}
         </div>
-        <div className="h-[90px] relative">
-          <p className="text-[20px] mb-[5px]">
-            Pas
-            <span className="text-[#ff6583]">s</span>wo
-            <span className="text-[#6c63ff]">r</span>d
-          </p>
-          <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
-            <i
-              id="showpass"
-              className="material-symbols-outlined opacity-0"
-              onClick={() => setshowpass((prev) => !prev)}
+
+        {/* Password */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1.5" style={{ color: "var(--muted)" }}>
+            Password
+          </label>
+          <div className="relative">
+            <input
+              type={showpass ? "text" : "password"}
+              style={{ ...inputStyle, paddingRight: "42px" }}
+              placeholder="Enter password"
+              onChange={(e) => { setpassword(e.target.value); setwrongstats(false); }}
+              onFocus={(e) => e.target.style.borderColor = "rgba(108,99,255,0.6)"}
+              onBlur={(e) => e.target.style.borderColor = "rgba(108,99,255,0.2)"}
+              required
+            />
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-sm"
+              style={{ color: "var(--muted)", background: "none", border: "none" }}
+              onClick={() => setshowpass(p => !p)}
             >
-              {!showpass ? "visibility_off" : "visibility"}
-            </i>
+              <span className="material-symbols-outlined text-[18px]">
+                {showpass ? "visibility_off" : "visibility"}
+              </span>
+            </button>
           </div>
-          <input
-            type={showpass ? "text" : "password"}
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black bg-transparent md:h-[40px]  outline-none text-center"
-            onChange={(e) => {
-              setpassword(e.target.value);
-              setwrongstats(false);
-            }}
-            required
-          />
-          <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            {wrongstatus && "OR Password"}
-          </p>
         </div>
-        <div className="w-[100%] h-[20%] flex justify-center items-center">
-          <button
-            id="logbut"
-            className="w-[40%] h-[50%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#ff6583] rounded-[5px]"
-          >
-            LOGIN
-          </button>
-        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary w-full py-3 text-sm font-bold tracking-[0.1em] rounded-full mt-2"
+        >
+          {loading ? "Signing in…" : "LOGIN"}
+        </button>
       </form>
     </div>
   );

@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Onsignup } from "../api/auth";
 import { useNavigate } from "react-router-dom";
-import { Uselogs } from "../auth/providers";
 
 function Signupuser() {
   let [wrongstatus, setwrongstats] = useState("");
@@ -14,153 +13,153 @@ function Signupuser() {
   let [isdisable, setdisable] = useState(true);
   let [showpass, setshowpass] = useState(false);
   let [showcpass, setshowcpass] = useState(false);
+  let [loading, setloading] = useState(false);
   let navigate = useNavigate();
 
   const verifypass = (val, val2) => {
     if (val2 !== val) {
       setwrongstats("passwordnomatch");
+      setdisable(true);
     } else {
       setwrongstats("");
       setdisable(false);
     }
   };
 
-  useEffect(() => {
-    const inp = document.querySelectorAll("input");
-    const inpp = document.getElementById("logbut");
-    const hide = document.querySelectorAll("#showpass");
+  const handleSubmit = async (e) => {
+    setloading(true);
+    await Onsignup(e, username, email, password, setverifyemail, setverifyusername, navigate);
+    setloading(false);
+  };
 
-    if (inp) {
-      inpp.classList.add("animate-inpp");
-      for (let i = 0; i < inp.length; i++) {
-        inp[i].classList.add("animate-inp");
-      }
-
-      setTimeout(() => {
-        for (let i = 0; i < hide.length; i++) {
-          hide[i].classList.add("animate-opa");
-          hide[i].classList.add("opacity-100");
-        }
-      }, 600);
-    }
-  }, []);
+  const inputStyle = {
+    background: "rgba(108,99,255,0.06)",
+    border: "1.5px solid rgba(108,99,255,0.2)",
+    color: "var(--text)",
+    borderRadius: "12px",
+    padding: "9px 14px",
+    width: "100%",
+    outline: "none",
+    fontSize: "13px",
+    fontWeight: "500",
+    transition: "border-color 0.2s ease",
+  };
 
   return (
-    <div className="w-[100%] h-[60%]  max-sm:relative max-sm:z-5">
-      <form
-        className="w-[100%] h-[100%] "
-        onSubmit={(e) =>
-          Onsignup(
-            e,
-            username,
-            email,
-            password,
-            setverifyemail,
-            setverifyusername,
-            navigate,
-      
-          )
-        }
-      >
-        <div className="h-[75px]">
-          <p className="text-[20px] mb-[5px]">
-            <span className="text-[#ff6583]">U</span>sern
-            <span className="text-[#6c63ff]">a</span>me
-          </p>
-          <input
-            type="text"
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px] outline-none text-center"
-            onChange={(e) => {
-              setverifyusername(false);
-              setusername(e.target.value);
-            }}
-            required
-          />
-          <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            {verifyusername && "Username is already taken"}
-          </p>
-        </div>
-        <div className="h-[75px]">
-          <p className="text-[20px] mb-[5px]">
-            E<span className="text-[#6c63ff]">m</span>ail
-          </p>
-          <input
-            type="email"
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px]  outline-none text-center"
-            onChange={(e) => {
-              setemail(e.target.value);
-              setverifyemail(false);
-            }}
-            required
-          />
-          <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            {verifyemail && "Email is already taken"}
-          </p>
-        </div>
-        <div className="h-[70px] relative ">
-          <p className="text-[20px] mb-[5px]">
-            Pas<span className="text-[#ff6583]">s</span>wo
-            <span className="text-[#6c63ff]">r</span>d
-          </p>
-          <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
-            <i
-              id="showpass"
-              className="material-symbols-outlined opacity-0"
-              onClick={() => setshowpass((prev) => !prev)}
-            >
-              {!showpass ? "visibility_off" : "visibility"}
-            </i>
-          </div>
-          <input
-            type={showpass ? "text" : "password"}
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black md:h-[40px] outline-none text-center"
-            required
-            onChange={(e) => {
-              const val = e.target.value;
-              setpassword(val);
-              verifypass(val, cpassword);
-            }}
-          />
-        </div>
-        <div className="h-[90px] relative">
-          <p className="text-[20px] mb-[5px]">
-            <span className="text-[#6c63ff]">C</span>onfirm Pas
-            <span className="text-[#ff6583]">s</span>wo
-            <span className="text-[#6c63ff]">r</span>d
-          </p>
-          <div className="absolute  h-[30px] md:h-[40px] flex justify-center items-center right-0 mr-[2%] cursor-pointer">
-            <i
-              id="showpass"
-              className="material-symbols-outlined opacity-0"
-              onClick={() => setshowcpass((prev) => !prev)}
-            >
-              {!showcpass ? "visibility_off" : "visibility"}
-            </i>
-          </div>
-          <input
-            type={showcpass ? "text" : "password"}
-            className="w-[100%] h-[30px] rounded-[6px] border-[1px] border-solid border-black bg-transparent md:h-[40px]  outline-none text-center"
-            required
-            onChange={(e) => {
-              const val2 = e.target.value;
-              setcpassword(val2);
-              verifypass(password, val2);
-            }}
-          />
+    <div className="w-full flex flex-col pt-4 px-2">
+      <div className="text-center mb-4 fade-in">
+        <p className="logo-text text-3xl mb-1 select-none">
+          <span style={{ color: "#6c63ff" }}>A</span>L
+          <span style={{ color: "#6c63ff" }}>A</span>P
+          <span style={{ color: "#ff6583" }}>A</span>
+          <span style={{ color: "#6c63ff" }}>A</span>P
+        </p>
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: "var(--muted)" }}>
+          Create an account
+        </p>
+      </div>
 
-          <p className="w-[100%] text-center text-[13px] text-[#611717]">
-            {wrongstatus === "passwordnomatch" && "Password dont match"}
-          </p>
+      <form className="flex flex-col gap-3 fade-in-delay" onSubmit={handleSubmit}>
+        {/* Username */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1" style={{ color: "var(--muted)" }}>
+            Username
+          </label>
+          <input
+            type="text" style={inputStyle} placeholder="Choose a username"
+            onChange={(e) => { setverifyusername(false); setusername(e.target.value); }}
+            onFocus={(e) => e.target.style.borderColor = "rgba(108,99,255,0.6)"}
+            onBlur={(e) => e.target.style.borderColor = "rgba(108,99,255,0.2)"}
+            required
+          />
+          {verifyusername && <p className="text-xs mt-0.5" style={{ color: "#f87171" }}>⚠ Username already taken</p>}
         </div>
-        <div className="w-[100%] h-[20%] flex justify-center items-center">
-          <button
-            id="logbut"
-            className="w-[40%] h-[50%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px]"
-            disabled={isdisable}
-          >
-            JOIN
-          </button>
+
+        {/* Email */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1" style={{ color: "var(--muted)" }}>
+            Email
+          </label>
+          <input
+            type="email" style={inputStyle} placeholder="your@email.com"
+            onChange={(e) => { setemail(e.target.value); setverifyemail(false); }}
+            onFocus={(e) => e.target.style.borderColor = "rgba(108,99,255,0.6)"}
+            onBlur={(e) => e.target.style.borderColor = "rgba(108,99,255,0.2)"}
+            required
+          />
+          {verifyemail && <p className="text-xs mt-0.5" style={{ color: "#f87171" }}>⚠ Email already in use</p>}
         </div>
+
+        {/* Password */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1" style={{ color: "var(--muted)" }}>
+            Password
+          </label>
+          <div className="relative">
+            <input
+              type={showpass ? "text" : "password"}
+              style={{ ...inputStyle, paddingRight: "42px" }}
+              placeholder="Create password"
+              onChange={(e) => { const v = e.target.value; setpassword(v); verifypass(v, cpassword); }}
+              onFocus={(e) => e.target.style.borderColor = "rgba(108,99,255,0.6)"}
+              onBlur={(e) => e.target.style.borderColor = "rgba(108,99,255,0.2)"}
+              required
+            />
+            <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-sm"
+              style={{ color: "var(--muted)", background: "none", border: "none" }}
+              onClick={() => setshowpass(p => !p)}>
+              <span className="material-symbols-outlined text-[18px]">
+                {showpass ? "visibility_off" : "visibility"}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Confirm Password */}
+        <div>
+          <label className="text-xs font-bold tracking-wide block mb-1" style={{ color: "var(--muted)" }}>
+            Confirm Password
+          </label>
+          <div className="relative">
+            <input
+              type={showcpass ? "text" : "password"}
+              style={{
+                ...inputStyle, paddingRight: "42px",
+                borderColor: wrongstatus === "passwordnomatch" ? "rgba(248,113,113,0.5)" : "rgba(108,99,255,0.2)"
+              }}
+              placeholder="Repeat password"
+              onChange={(e) => { const v = e.target.value; setcpassword(v); verifypass(password, v); }}
+              onFocus={(e) => e.target.style.borderColor = wrongstatus === "passwordnomatch" ? "rgba(248,113,113,0.5)" : "rgba(108,99,255,0.6)"}
+              onBlur={(e) => e.target.style.borderColor = wrongstatus === "passwordnomatch" ? "rgba(248,113,113,0.5)" : "rgba(108,99,255,0.2)"}
+              required
+            />
+            <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-sm"
+              style={{ color: "var(--muted)", background: "none", border: "none" }}
+              onClick={() => setshowcpass(p => !p)}>
+              <span className="material-symbols-outlined text-[18px]">
+                {showcpass ? "visibility_off" : "visibility"}
+              </span>
+            </button>
+          </div>
+          {wrongstatus === "passwordnomatch" && (
+            <p className="text-xs mt-0.5" style={{ color: "#f87171" }}>⚠ Passwords don't match</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={isdisable || loading}
+          className="w-full py-3 text-sm font-bold tracking-[0.12em] rounded-full mt-1 transition-all duration-200"
+          style={{
+            background: isdisable ? "rgba(108,99,255,0.2)" : "linear-gradient(135deg, #6c63ff, #8b5cf6)",
+            color: isdisable ? "var(--muted)" : "white",
+            border: "none",
+            boxShadow: isdisable ? "none" : "0 4px 20px rgba(108,99,255,0.4)",
+            cursor: isdisable ? "not-allowed" : "pointer",
+          }}
+        >
+          {loading ? "Creating account…" : "JOIN"}
+        </button>
       </form>
     </div>
   );

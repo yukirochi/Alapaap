@@ -5,166 +5,153 @@ import heograpiya from "../assets/heograpiya.webp";
 import matematika from "../assets/matematika.webp";
 import politika from "../assets/politika.webp";
 import teknolohiya from "../assets/teknolohiya.webp";
-import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Finalnotice from "../components/finalnotice";
 import Openlogout from "../components/logout";
+
+const subjects = [
+  { name: "Science", category: "AGHAM", img: agham, label: "AGHAM" },
+  { name: "Geography", category: "HEOGRAPIYA", img: heograpiya, label: "HEOGRAPIYA" },
+  { name: "General Knowledge", category: "MATEMATIKA", img: matematika, label: "GENERAL" },
+  { name: "Society & Culture", category: "POLITIKA", img: politika, label: "POLITIKA" },
+  { name: "Music", category: "TEKNOLOHIYA", img: teknolohiya, label: "MUSIKA" },
+];
+
 function Lobby() {
   let [select, setselect] = useState("");
   const location = useLocation();
   let nickname = location.state?.username || "guest";
   let userinfo = location.state?.userinfo;
-    
-
   const navigate = useNavigate();
   let [tog, settog] = useState(false);
   let [openlog, setopenlog] = useState(false);
-  let subjects = [
-    {
-      name: "Science",
-      category: "AGHAM",
-    },
-    {
-      name: "Geography",
-      category: "HEOGRAPIYA",
-    },
-    {
-      name: "General Knowledge",
-      category: "MATEMATIKA",
-    },
-    {
-      name: "Society & Culture",
-      category: "POLITIKA",
-    },
-    {
-      name: "Music",
-      category: "TEKNOLOHIYA",
-    },
-  ];
+
   const getdata = () => {
     if (select === "") {
-      alert("pls choose a scarf first");
       return;
     }
-
-    if (
-      nickname.toLowerCase() === "guest" ||
-      nickname === "" ||
-      nickname === null
-    ) {
+    if (nickname.toLowerCase() === "guest" || nickname === "" || nickname === null) {
       navigate("/game/guest", {
-        state: { selected: select, nickname: nickname, userinfo:userinfo },
+        state: { selected: select, nickname: nickname, userinfo: userinfo },
       });
-    }else{
-       navigate(`/game/${userinfo._id}`, {
-        state: { selected: select, nickname: nickname,userinfo:userinfo },
+    } else {
+      navigate(`/game/${userinfo._id}`, {
+        state: { selected: select, nickname: nickname, userinfo: userinfo },
       });
     }
-  
   };
 
-  const selected = (items) => {
-    document.querySelectorAll(".select").forEach((itm) => {
-      itm.classList.remove("grayscale-0");
-    });
-    setselect(items);
-
-    subjects.forEach((key) => {
-      if (items === key.name) {
-        document
-          .getElementsByClassName(`${key.category}`)[0]
-          .classList.add("grayscale-0");
-      }
-    });
+  const selected = (name) => {
+    setselect(name);
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] overflow-hidden flex flex-col  items-center">
-      <Lobbyheader
-        nickname={nickname}
-        setopenlog={setopenlog}
-        userinfo={userinfo}
-      />
-      <div className=" w-[100%] h-[5%] flex justify-center items-center">
-        <p className="text-5xl font-bold  lg:text-6xl md:text-6xl">
-          <span className="text-[#6c63ff]">A</span>L
-          <span className="text-[#6c63ff]">A</span>P
-          <span className="text-[#ff6583]">A</span>
-          <span className="text-[#6c63ff]">A</span>P
+    <div className="w-screen h-screen overflow-hidden flex flex-col items-center relative">
+      {/* Orbs */}
+      <div className="absolute top-[-80px] right-[-80px] w-[300px] h-[300px] rounded-full pointer-events-none opacity-10"
+        style={{ background: "radial-gradient(circle, #6c63ff 0%, transparent 70%)" }} />
+      <div className="absolute bottom-[-80px] left-[-80px] w-[250px] h-[250px] rounded-full pointer-events-none opacity-10"
+        style={{ background: "radial-gradient(circle, #ff6583 0%, transparent 70%)" }} />
+
+      <Lobbyheader nickname={nickname} setopenlog={setopenlog} userinfo={userinfo} />
+
+      {/* Logo */}
+      <div className="w-full h-[6%] flex justify-center items-center fade-in">
+        <p className="logo-text text-4xl lg:text-5xl select-none"
+          style={{ textShadow: "0 0 30px rgba(108,99,255,0.4)" }}>
+          <span style={{ color: "#6c63ff" }}>A</span>L
+          <span style={{ color: "#6c63ff" }}>A</span>P
+          <span style={{ color: "#ff6583" }}>A</span>
+          <span style={{ color: "#6c63ff" }}>A</span>P
         </p>
       </div>
+
       <Leaderboard />
-      <div className="w-[100%] h-[5%] flex justify-center font-bold text-[15px] cursor-pointer">
-        PLEASE CHOOSE YOUR SCARF
+
+      {/* Subject selection label */}
+      <div className="w-full h-[5%] flex justify-center items-center">
+        <p className="text-xs font-bold tracking-[0.25em] uppercase fade-in-delay"
+          style={{ color: "var(--muted)" }}>
+          ✦ Choose Your Scarf ✦
+        </p>
       </div>
-      <div className="w-[100%] h-[40%] flex justify-center max-w-[600px]">
-        <div className="w-[80%] h-[90%] ">
-          <div className="w-[100%] h-[33%]  flex justify-between">
+
+      {/* Scarf grid */}
+      <div className="w-full h-[36%] flex justify-center fade-in-delay">
+        <div className="w-[90%] max-w-[520px] h-full flex flex-col justify-between">
+
+          {/* Row 1 */}
+          <div className="h-[31%] flex justify-center gap-[6%]">
+            {subjects.slice(0, 2).map((sub) => (
+              <div
+                key={sub.name}
+                onClick={() => selected(sub.name)}
+                className={`w-[38%] h-full rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden
+                  ${select === sub.name ? "scarf-item active" : "scarf-item"}`}
+                style={{ backgroundImage: `url(${sub.img})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+              >
+                <div className="absolute bottom-0 w-full text-center py-1 text-[10px] font-bold tracking-widest"
+                  style={{ background: "rgba(13,13,26,0.7)", color: select === sub.name ? "#ff6583" : "var(--muted)" }}>
+                  {sub.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2 */}
+          <div className="h-[31%] flex justify-center">
             <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics AGHAM select"
-              style={{ backgroundImage: `url(${agham})` }}
-              onClick={() => selected("Science")}
+              onClick={() => selected(subjects[2].name)}
+              className={`w-[38%] h-full rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden
+                ${select === subjects[2].name ? "scarf-item active" : "scarf-item"}`}
+              style={{ backgroundImage: `url(${subjects[2].img})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
             >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px] ">
-                AGHAM
-              </p>
-            </div>
-            <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics HEOGRAPIYA select"
-              style={{ backgroundImage: `url(${heograpiya})` }}
-              onClick={() => selected("Geography")}
-            >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                HEOGRAPIYA
-              </p>
+              <div className="absolute bottom-0 w-full text-center py-1 text-[10px] font-bold tracking-widest"
+                style={{ background: "rgba(13,13,26,0.7)", color: select === subjects[2].name ? "#ff6583" : "var(--muted)" }}>
+                {subjects[2].label}
+              </div>
             </div>
           </div>
-          <div className="w-[100%] h-[33%]  flex justify-center">
-            <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics MATEMATIKA select"
-              style={{ backgroundImage: `url(${matematika})` }}
-              onClick={() => selected("General Knowledge")}
-            >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                GENERAL
-              </p>
-            </div>
-          </div>
-          <div className="w-[100%] h-[33%] flex justify-between">
-            <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics  POLITIKA select"
-              style={{ backgroundImage: `url(${politika})` }}
-              onClick={() => selected("Society & Culture")}
-            >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                POLITIKA
-              </p>
-            </div>
-            <div
-              className=" w-[33%] h-[100%]  bg-center bg-contain bg-no-repeat relative grayscale hover:grayscale-0 pics TEKNOLOHIYA select"
-              style={{ backgroundImage: `url(${teknolohiya})` }}
-              onClick={() => selected("Music")}
-            >
-              <p className="absolute flex justify-center items-end h-[105%] w-[100%] text-[13px] cursor-pointer -mt-[10px]">
-                MUSIKA
-              </p>
-            </div>
+
+          {/* Row 3 */}
+          <div className="h-[31%] flex justify-center gap-[6%]">
+            {subjects.slice(3, 5).map((sub) => (
+              <div
+                key={sub.name}
+                onClick={() => selected(sub.name)}
+                className={`w-[38%] h-full rounded-xl cursor-pointer transition-all duration-300 relative overflow-hidden
+                  ${select === sub.name ? "scarf-item active" : "scarf-item"}`}
+                style={{ backgroundImage: `url(${sub.img})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+              >
+                <div className="absolute bottom-0 w-full text-center py-1 text-[10px] font-bold tracking-widest"
+                  style={{ background: "rgba(13,13,26,0.7)", color: select === sub.name ? "#ff6583" : "var(--muted)" }}>
+                  {sub.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <div className="w-[100%] h-[4%] flex justify-center ">
+
+      {/* Start button area */}
+      <div className="w-full h-[8%] flex flex-col justify-center items-center gap-1 fade-in-delay2">
         <button
-          className="w-[30%] h-[100%] lg:text-[20px] bg-gray-700 flex justify-center items-center text-[#6c63ff] rounded-[5px] max-w-[200px]"
-          onClick={() => settog(true)}
+          className={`px-10 py-2.5 font-bold text-sm tracking-[0.15em] rounded-full transition-all duration-300
+            ${select ? "btn-primary pulse-ring" : "btn-ghost opacity-60 cursor-not-allowed"}`}
+          onClick={() => select && settog(true)}
         >
-          START
+          {select ? `START — ${select}` : "SELECT A SCARF FIRST"}
         </button>
+        {!userinfo && (
+          <p className="text-[10px] mt-1" style={{ color: "var(--muted)" }}>
+            Login to save scores on the leaderboard
+          </p>
+        )}
       </div>
-      <p className="w-[100%] text-center text-[10px]">
-        Login to be in Leaderboard
-      </p>
+
       {tog && <Finalnotice settog={settog} getdata={getdata} />}
-      {openlog && <Openlogout setopenlog={setopenlog}></Openlogout>}
+      {openlog && <Openlogout setopenlog={setopenlog} />}
     </div>
   );
 }

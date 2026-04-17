@@ -1,31 +1,62 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Finalnotice({settog, getdata}) {
+const API_URL = process.env.REACT_APP_API_URL || "https://alapaap-rsmj.onrender.com";
+
+function Finalnotice({ settog, getdata }) {
   return (
-    <div className="w-[100vw] h-[100vh] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-1000 bg-[rgba(67,67,67,0.4)] flex items-center justify-center"
-    onClick={()=> settog(false)}>
-      <div className="m-12 bg-white max-w-[500px] rounded-xl duration-700 p-5 h-[60%] flex flex-col justify-center items-center  w-[80%] gap-[10%] ">
-        <p className="text-4xl font-bold  lg:text-6xl md:text-6xl md:-mt-[5%]">
-          <span className="text-[#6c63ff]">A</span>L
-          <span className="text-[#6c63ff]">A</span>P
-          <span className="text-[#ff6583]">A</span>
-          <span className="text-[#6c63ff]">A</span>P
+    <div
+      className="modal-overlay"
+      onClick={() => settog(false)}
+    >
+      <div
+        className="glass w-[90%] max-w-[480px] p-8 flex flex-col items-center gap-6 fade-in"
+        style={{ background: "var(--glass)" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Logo */}
+        <p className="logo-text text-5xl lg:text-6xl select-none"
+          style={{ textShadow: "0 0 30px rgba(108,99,255,0.5)" }}>
+          <span style={{ color: "#6c63ff" }}>A</span>L
+          <span style={{ color: "#6c63ff" }}>A</span>P
+          <span style={{ color: "#ff6583" }}>A</span>
+          <span style={{ color: "#6c63ff" }}>A</span>P
         </p>
 
-        <p class="text-[13px]  text-center mt-[10px] max-sm:text-[10px] lg:h-[30%] md:h-[30%] md:w-[60%]">
-          Welcome to the Quiz Quest! Your goal is to rise from Lupa (the ground)
-          all the way to Alapaap (the skies) by completing 10 levels of
-          increasing difficulty. The quiz is divided into three tiers: Easy,
-          Medium, and Hard, with the final stage—Level 10—being the ultimate
-          Boss Level. Each correct answer brings you closer to the top, while
-          wrong answers can slow you down. Think fast, stay sharp, and conquer
-          every level to claim victory in the skies. Good luck!
+        {/* Divider */}
+        <div className="w-[60px] h-[2px] rounded-full"
+          style={{ background: "linear-gradient(90deg, #6c63ff, #ff6583)" }} />
+
+        {/* Description */}
+        <p className="text-sm text-center leading-relaxed max-w-[380px]" style={{ color: "#a0a0c0" }}>
+          Welcome to the <strong style={{ color: "var(--text)" }}>Quiz Quest</strong>! Rise from{" "}
+          <span style={{ color: "#6c63ff" }}>Lupa</span> (the ground) to{" "}
+          <span style={{ color: "#ff6583" }}>Alapaap</span> (the skies) through{" "}
+          <strong style={{ color: "var(--text)" }}>10 levels</strong> of increasing difficulty —
+          Easy, Medium, Hard, and a final{" "}
+          <span style={{ color: "#a855f7" }}>Boss Level</span>.
+          You have <strong style={{ color: "#f87171" }}>3 lives</strong>. Use them wisely!
         </p>
 
-        <button className="bg-[#ff6583] hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg md:mt-[10%] font-medium tracking-wider border-2 border-[#ff6583] hover:border-[#ff6583] text-white hover:text-[#ff6583] rounded-full transition ease-in duration-300"
-        onClick={()=> getdata()}
+        {/* Level guide */}
+        <div className="w-full grid grid-cols-3 gap-2 text-center text-[10px] font-bold tracking-wider">
+          {[
+            { label: "EASY", color: "#4ade80", levels: "1–3" },
+            { label: "MEDIUM", color: "#f59e0b", levels: "4–6" },
+            { label: "HARD", color: "#ef4444", levels: "7–9" },
+          ].map((d) => (
+            <div key={d.label} className="rounded-lg py-2 px-1"
+              style={{ background: `${d.color}15`, border: `1px solid ${d.color}30` }}>
+              <p style={{ color: d.color }}>{d.label}</p>
+              <p style={{ color: "var(--muted)" }}>Lvl {d.levels}</p>
+            </div>
+          ))}
+        </div>
+
+        <button
+          className="btn-pink w-full py-3 text-sm font-bold tracking-[0.15em] rounded-full flex items-center justify-center gap-2"
+          onClick={() => getdata()}
         >
-          BEGIN
+          <span className="material-symbols-outlined text-lg">rocket_launch</span> BEGIN QUEST
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
-import Userhead from "../components/userhead";
+const API_URL = process.env.REACT_APP_API_URL || "https://alapaap-rsmj.onrender.com";
+
 export const Onsignup = async (
   e,
   varusername,
@@ -17,15 +18,11 @@ export const Onsignup = async (
   };
 
   try {
-    const res = await fetch("https://alapaap-rsmj.onrender.com/api/signup", {
+    const res = await fetch(`${API_URL}/api/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
-    
 
     if (!res.ok) throw new Error("Network Error");
     let resp = await res.json();
@@ -33,49 +30,33 @@ export const Onsignup = async (
     if (resp.var === "emailprob") {
       veremail(true);
       return;
-    } 
+    }
     if (resp.var === "userprob") {
       veruser(true);
       return;
     }
-   
-    
-    alert(resp.msg);
-    navigate("/lobby", { state: { username: varusername, userinfo: resp.user} });
+
+    navigate("/lobby", { state: { username: varusername, userinfo: resp.user } });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const Onlogin = async (
-  e,
-  varusername,
-  varpassword,
-  varstats,
-  navigate
-) => {
+export const Onlogin = async (e, varusername, varpassword, varstats, navigate) => {
   e.preventDefault();
   try {
-    let data = {
-      username: varusername,
-      password: varpassword,
-    };
-    let res = await fetch("https://alapaap-rsmj.onrender.com/api/login", {
+    let data = { username: varusername, password: varpassword };
+    let res = await fetch(`${API_URL}/api/login`, {
       method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error("Network Error :", res.status);
+    if (!res.ok) throw new Error("Network Error");
     let resp = await res.json();
     if (resp.var === "failed") {
       varstats(true);
-      alert(resp.msg);
       return;
     }
-  
-    alert(resp.msg);
     navigate("/lobby", { state: { username: varusername, userinfo: resp.user } });
   } catch (error) {
     console.error(error);

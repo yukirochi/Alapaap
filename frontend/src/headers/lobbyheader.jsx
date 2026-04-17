@@ -1,43 +1,48 @@
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Uselogs } from "../auth/providers";
 import Userhead from "../components/userhead";
-function Lobbyheader({ nickname, setopenlog,userinfo }) {
-  let [info, setinfo] = useState("dasdasas");
-  let navigate = useNavigate()
-  useEffect(() => {
-    const playnav = document.querySelector(".playnav");
-    if (playnav) {
-      playnav.classList.add("animate-playnav2");
-    }
-  });
 
-  const VisitProfile = async (name) => {
-    if (name.toLowerCase() === "guest" || name === "" || name === null) {
-      return;
-    }
-    
-     navigate(`/profile/${userinfo._id}`,{state:{userinfo: userinfo}})
+function Lobbyheader({ nickname, setopenlog, userinfo }) {
+  const navigate = useNavigate();
+
+  const VisitProfile = () => {
+    if (!nickname || nickname.toLowerCase() === "guest") return;
+    navigate(`/profile/${userinfo._id}`, { state: { userinfo: userinfo } });
   };
 
   return (
-    <header className="flex w-[100%] h-[10%] justify-between  text-[20px] items-center">
-      {info && (
-        <div
-          className="ml-[5%] w-[30%] max-w-[300px] flex flex-col justify-center items-center playnav"
-          onClick={() => VisitProfile(nickname)}
-        >
-          <Userhead nickname={nickname} />
+    <header className="flex w-full h-[10%] justify-between items-center px-4 lg:px-8 fade-in"
+      style={{ borderBottom: "1px solid rgba(108,99,255,0.12)" }}>
+      {/* User chip */}
+      <div
+        className="flex items-center gap-2 cursor-pointer group"
+        onClick={VisitProfile}
+      >
+        <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+          style={{ background: "rgba(108,99,255,0.15)", border: "2px solid rgba(108,99,255,0.4)", color: "#6c63ff" }}>
+          <span className="material-symbols-outlined text-[20px]">person</span>
         </div>
-      )}
+        <div>
+          <p className="text-xs font-bold tracking-wide leading-none" style={{ color: "var(--text)" }}>
+            {nickname || "guest"}
+          </p>
+          <p className="text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>
+            {userinfo ? "tap to view profile" : "guest mode"}
+          </p>
+        </div>
+      </div>
 
+      {/* Logout */}
       <button
-        className="  flex justify-center text-center mr-[5%] outline-none ml-auto"
+        className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider transition-all duration-200 hover:scale-105"
+        style={{
+          background: "rgba(255,101,131,0.1)",
+          border: "1px solid rgba(255,101,131,0.3)",
+          color: "#ff6583"
+        }}
         onClick={() => setopenlog(true)}
       >
-        <p className="text-[30px]  material-symbols-outlined flex justify-center border-b-[4px]  animate-borderBeat w-[100%] border-b-[#ff6583] cursor-pointer hover:animate-hoveBeat ">
-          LOGOUT
-        </p>
+        <span className="material-symbols-outlined text-[18px]">logout</span> LEAVE
       </button>
     </header>
   );
