@@ -1,7 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function NoticeSign({ closennotice, opensign }) {
-  const navigate = useNavigate();
 
   return (
     <div

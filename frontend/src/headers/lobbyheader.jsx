@@ -1,6 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Userhead from "../components/userhead";
+import { useNavigate } from "react-router-dom";
 
 function Lobbyheader({ nickname, setopenlog, userinfo }) {
   const navigate = useNavigate();

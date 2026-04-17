@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Gameheader from "../headers/gameheader";
 import Slider from "../components/slider";
 import { useLocation } from "react-router-dom";

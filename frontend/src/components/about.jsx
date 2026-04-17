@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import agham from "../assets/agham.webp";
 import heograpiya from "../assets/heograpiya.webp";
 import matematika from "../assets/matematika.webp";

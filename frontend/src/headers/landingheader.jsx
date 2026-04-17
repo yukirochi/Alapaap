@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-
 function LandingHeader({ openaboutt, openlogin, opensign, opennotice }) {
-  const navigate = useNavigate();
 
   return (
     <header

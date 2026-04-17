@@ -31,7 +31,6 @@ function Changepass({ userinfo, setchangetab }) {
         body: JSON.stringify({ password: Newpass }),
       });
       if (!res.ok) throw new Error("Network Error");
-      let data = await res.json();
       setsuccess(true);
     } catch (error) {
       seterrormessage("An error occurred. Please try again.");

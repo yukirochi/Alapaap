@@ -1,16 +1,4 @@
 function Slider({ value }) {
-  const steps = [
-    { label: "Lupa", color: "#6c63ff" },
-    { label: "", color: "#6c63ff" },
-    { label: "", color: "#6c63ff" },
-    { label: "Medium", color: "#f59e0b" },
-    { label: "", color: "#f59e0b" },
-    { label: "", color: "#f59e0b" },
-    { label: "Hard", color: "#ef4444" },
-    { label: "", color: "#ef4444" },
-    { label: "", color: "#ef4444" },
-    { label: "Alapaap", color: "#ff6583" },
-  ];
 
   const getDiffLabel = () => {
     if (value <= 3) return { text: "EASY", color: "#4ade80" };

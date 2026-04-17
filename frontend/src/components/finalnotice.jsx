@@ -1,7 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
-const API_URL = process.env.REACT_APP_API_URL || "https://alapaap-rsmj.onrender.com";
-
 function Finalnotice({ settog, getdata }) {
   return (
     <div
